@@ -1,0 +1,46 @@
+.sec-banner {
+    overflow: hidden;
+    position: relative;
+}
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    width: 50%;
+    left: 26%;
+}
+.banner-image { 
+    list-style: none;
+    position: relative;
+}
+.slider {
+    display: flex;
+    position: relative;
+}
+.image {
+    width: 786px;
+    border-radius: 50px;
+    height: 284px;
+    margin-right: 50px;
+}
+.right-image {
+    right: 550%;
+}.scroll-btn {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+.far {
+    font-size: 68px;
+    background: grey;
+    border-radius: 999px;
+}
+.previous, .next {
+    padding: 0 37px;
+    opacity: 0.5;
+}
+.scroll-btn:hover >.previous, .scroll-btn:hover >.next {
+    opacity: 0.8;
+}

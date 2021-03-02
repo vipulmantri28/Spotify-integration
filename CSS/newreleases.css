@@ -1,0 +1,31 @@
+.release-list {
+    list-style: none;
+    display: flex;
+}
+.album-cover {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+.new-releases-parent {
+    overflow: hidden;
+}
+.release {
+    width: 12%;
+    text-align: center;
+}
+.album-name, .artist {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0;
+}
+.artist {
+    font-size: 14px;
+}
+.album-name {
+    font-size: 17px;
+}
+.album-div {
+    width: 170px;
+}
