@@ -1,7 +1,7 @@
 let access_token = location.hash.substr(0, location.hash.indexOf('&')).replace('#access_token=', '');
 console.log(access_token);
 
-fetch('https://api.spotify.com/v1/browse/new-releases?limit=50', {
+fetch('https://api.spotify.com/v1/browse/new-releases', {
     headers:{'Authorization': 'Bearer ' + access_token }
 })
 .then(response => response.json().then(data => {
@@ -42,7 +42,7 @@ fetch('https://api.spotify.com/v1/browse/new-releases?limit=50', {
         artistName.textContent = artists;
         albumAnchor.href = '#';
 
-        release.className = 'release';
+        release.className = 'release scroll-img';
         artistName.className = 'artist';
         image.className = 'album-cover';
         albumName.className = 'album-name';

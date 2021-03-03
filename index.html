@@ -6,6 +6,7 @@
 <script src="./Services/banner.js"></script>
 <script src="./Services/newrealeses.js"></script>
 <script src="./Services/categories.js"></script>
+<script src="./Services/horizontal-scroll.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,28 +36,32 @@
             </div>
         </div>
         <div class="release-container">
-            <div class="new-releases-parent ">
+            <div class="new-releases-parent scroll-wrapper">
                 <div class="new-releases scroll-parent">
+                    <div class="scroll-previous">
+                        <a class="scroll-back" onclick="scrollback('.release-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
+                    </div>
                     <div class="release-wrapper scroll-container" id="release-wrapper">
                         
                     </div>
-                    <div class="scroll-button">
-                        <a class="scroll-back" onclick="scrollback()"><i class="fas fa-chevron-circle-left"></i></a>
-                        <a class="scroll-forward" onclick="scrollback()"><i class="fas fa-chevron-circle-right"></i></a>
+                    <div class="scroll-next">
+                        <a class="scroll-forward" onclick="scrollforward('.release-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="categories-container">
-            <div class="categories-parent">
+            <div class="categories-parent scroll-wrapper">
                 <div class="categories scroll-parent">
+                    <div class="scroll-previous">
+                        <a class="scroll-back" onclick="scrollback('.category-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
+                    </div>
                     <div class="category-wrapper scroll-container" id="category-wrapper">
                         
                     </div>
-                    <div class="scroll-button">
-                        <a class="scroll-back" onclick="scrollback()"><i class="fas fa-chevron-circle-left"></i></a>
-                        <a class="scroll-forward" onclick="scrollback()"><i class="fas fa-chevron-circle-right"></i></a>
+                    <div class="scroll-next">
+                        <a class="scroll-forward" onclick="scrollforward('.category-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
             </div>

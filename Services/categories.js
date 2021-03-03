@@ -27,7 +27,7 @@ fetch ('https://api.spotify.com/v1/browse/categories?locale=en_IN', {
      categoryAnchor.appendChild(icon);
      categoryAnchor.appendChild(categoryName);
 
-     categoryList.className = 'category ';
+     categoryList.className = 'category scroll-img';
      categoryAnchor.href = '#';
      categoryAnchor.className = 'category-Anchor';
      icon.className = 'category-icon';
@@ -35,5 +35,5 @@ fetch ('https://api.spotify.com/v1/browse/categories?locale=en_IN', {
      categoryDiv.className = 'category-div';
     }
     console.log(data)
-
 }))
+

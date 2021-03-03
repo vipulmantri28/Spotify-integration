@@ -32,12 +32,19 @@
 .album-div, .category-div {
     width: 150px;
 }
-.scroll-button {
+.scroll-previous, .scroll-next {
     position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     top: 29%;
+    z-index: 999;
+}
+.scroll-next {
+    right: 0;
+}
+.scroll-previous {
+    left: 0;
+}
+.scroll-back {
+    display: none;
 }
 .fas {
     visibility: hidden;
@@ -69,7 +76,7 @@
     .artist {
         font-size: 19px;
     }
-    .scroll-button {
+    .scroll-previous, .scroll-next {
         top: 38%;
     }
 }
