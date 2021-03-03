@@ -1,20 +1,23 @@
-.release-list {
-    list-style: none;
+.new-releases, .categories {
+    position: relative;
     display: flex;
 }
-.album-cover {
+.release-wrapper, .category-wrapper {
+    display: flex;
+}
+.album-cover, .category-icon {
     width: 150px;
     height: 150px;
     border-radius: 10px;
 }
-.new-releases-parent {
+.new-releases-parent, .categories-parent {
     overflow: hidden;
 }
-.release {
-    width: 12%;
+.release, .category {
+    padding: 10px;
     text-align: center;
 }
-.album-name, .artist {
+.album-name, .artist, .category-name {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -23,9 +26,50 @@
 .artist {
     font-size: 14px;
 }
-.album-name {
+.album-name, .category-name {
     font-size: 17px;
 }
-.album-div {
-    width: 170px;
+.album-div, .category-div {
+    width: 150px;
+}
+.scroll-button {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 29%;
+}
+.fas {
+    visibility: hidden;
+}
+.scroll-parent:hover .fas {
+    font-size: 49px;
+    color: grey;
+    opacity: 0.8;
+    visibility: visible;
+}
+
+@media (min-width: 1441px) {
+    .release, .category {
+        padding: 20px;
+    }
+    .album-cover, .category-icon {
+        width: 250px;
+        height: 250px;
+    }
+    .categories-parent, .new-releases-parent {
+        margin: 3%;
+    }
+    .album-div, .category-div {
+        width: 250px;
+    }
+    .album-name, .category-name {
+        font-size: 22px;
+    }
+    .artist {
+        font-size: 19px;
+    }
+    .scroll-button {
+        top: 38%;
+    }
 }

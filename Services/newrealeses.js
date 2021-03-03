@@ -12,12 +12,12 @@ fetch('https://api.spotify.com/v1/browse/new-releases?limit=50', {
         const artistName = document.createElement('p');
         const albumName = document.createElement('p');
         const albumDiv = document.createElement('div');
-        const release = document.createElement('li');
+        const release = document.createElement('div');
         const images = item.images;
         const name = item.name;
         const artists =  item.artists.map(artist => artist.name)
         let showImg;
-        const releaseList = document.getElementById('release-list')
+        const releaseList = document.getElementById('release-wrapper')
         
         
         releaseList.appendChild(release);

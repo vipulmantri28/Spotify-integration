@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="./CSS/category.css">
 <script src="./Services/banner.js"></script>
 <script src="./Services/newrealeses.js"></script>
-<script src="./Services/categories.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,21 +35,29 @@
             </div>
         </div>
         <div class="release-container">
-            <div class="new-releases-parent">
-                <div class="new-releases">
-                    <ul class="release-list" id="release-list">
+            <div class="new-releases-parent ">
+                <div class="new-releases scroll-parent">
+                    <div class="release-wrapper scroll-container" id="release-wrapper">
                         
-                    </ul>
+                    </div>
+                    <div class="scroll-button">
+                        <a class="scroll-back" onclick="scrollback()"><i class="fas fa-chevron-circle-left"></i></a>
+                        <a class="scroll-forward" onclick="scrollback()"><i class="fas fa-chevron-circle-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="categories-container">
             <div class="categories-parent">
-                <div class="categories">
-                    <ul class="category-list" id="category-list">
+                <div class="categories scroll-parent">
+                    <div class="category-wrapper scroll-container" id="category-wrapper">
                         
-                    </ul>
+                    </div>
+                    <div class="scroll-button">
+                        <a class="scroll-back" onclick="scrollback()"><i class="fas fa-chevron-circle-left"></i></a>
+                        <a class="scroll-forward" onclick="scrollback()"><i class="fas fa-chevron-circle-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

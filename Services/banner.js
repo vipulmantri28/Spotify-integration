@@ -16,7 +16,6 @@
             
             this.autoScroller();
             this.stopStart();
-            
         },
         autoScroller: function() {
             let self = this;
