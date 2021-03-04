@@ -1,35 +1,47 @@
-.new-releases, .categories {
+/* general CSS */
+
+a {
+    text-decoration: none;
+}
+
+
+
+/* CSS for content */
+.new-releases, .categories, .playlists {
     position: relative;
     display: flex;
 }
-.release-wrapper, .category-wrapper {
+.release-wrapper, .category-wrapper, .playlist-wrapper {
     display: flex;
 }
-.album-cover, .category-icon {
+.album-cover, .category-icon, .playlist-icon {
     width: 150px;
     height: 150px;
     border-radius: 10px;
 }
-.new-releases-parent, .categories-parent {
+.new-releases-parent, .categories-parent, .playlist-parent {
     overflow: hidden;
+    margin: 4.5%;
 }
-.release, .category {
+.release, .category, .playlist {
     padding: 10px;
     text-align: center;
 }
-.album-name, .artist, .category-name {
+.album-name, .artist, .category-name, .playlist-name {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 0;
+    text-decoration: none;
+    color: black;
 }
 .artist {
     font-size: 14px;
 }
-.album-name, .category-name {
+.album-name, .category-name, .playlist-name {
     font-size: 17px;
 }
-.album-div, .category-div {
+.album-div, .category-div, .playlist-div {
     width: 150px;
 }
 .scroll-previous, .scroll-next {
@@ -56,21 +68,21 @@
     visibility: visible;
 }
 
-@media (min-width: 1441px) {
-    .release, .category {
+@media (min-width: 1920px) {
+    .release, .category, .playlist {
         padding: 20px;
     }
-    .album-cover, .category-icon {
+    .album-cover, .category-icon, .playlist-icon {
         width: 250px;
         height: 250px;
     }
-    .categories-parent, .new-releases-parent {
+    .categories-parent, .new-releases-parent, .playlist-parent {
         margin: 3%;
     }
-    .album-div, .category-div {
+    .album-div, .category-div, .playlist-div {
         width: 250px;
     }
-    .album-name, .category-name {
+    .album-name, .category-name, .playlist-name {
         font-size: 22px;
     }
     .artist {

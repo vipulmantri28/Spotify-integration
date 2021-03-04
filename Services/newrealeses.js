@@ -1,7 +1,7 @@
 let access_token = location.hash.substr(0, location.hash.indexOf('&')).replace('#access_token=', '');
 console.log(access_token);
 
-fetch('https://api.spotify.com/v1/browse/new-releases', {
+fetch('https://api.spotify.com/v1/browse/new-releases?limit=30', {
     headers:{'Authorization': 'Bearer ' + access_token }
 })
 .then(response => response.json().then(data => {

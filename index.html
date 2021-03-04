@@ -7,6 +7,8 @@
 <script src="./Services/newrealeses.js"></script>
 <script src="./Services/categories.js"></script>
 <script src="./Services/horizontal-scroll.js"></script>
+<script src="./Services/featured-playlist.js"></script>
+<script src="./Services/userprofile.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +17,18 @@
 </head>
 <body>
     <div>
-        <a href="/login">login here</a>
+
+        <div class="login-container">
+            <div class="login-wrapper">
+                <div class="login">
+                    <a href="/login">login</a>
+                </div>
+                <div class="logged-in">
+
+                </div>
+            </div>
+        </div>
+        
 
         <div class="banner">
             <div class="sec-banner">
@@ -51,6 +64,21 @@
             </div>
         </div>
 
+        <div class="playlist-container">
+            <div class="playlist-parent scroll-wrapper">
+                <div class="playlists scroll-parent">
+                    <div class="scroll-previous">
+                        <a class="scroll-back" onclick="scrollback('.playlist-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
+                    </div>
+                    <div class="playlist-wrapper scroll-container" id="playlist-wrapper">
+                        
+                    </div>
+                    <div class="scroll-next">
+                        <a class="scroll-forward" onclick="scrollforward('.playlist-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="categories-container">
             <div class="categories-parent scroll-wrapper">
                 <div class="categories scroll-parent">
