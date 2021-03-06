@@ -2,8 +2,15 @@
 
 a {
     text-decoration: none;
+    color: darkgray;
 }
-
+p {
+    margin: 0;
+}
+h1, h2, h3, h4 {
+    margin: 0;
+    color: darkgray;
+}
 
 
 /* CSS for content */
@@ -13,6 +20,7 @@ a {
 }
 .release-wrapper, .category-wrapper, .playlist-wrapper {
     display: flex;
+    transition: transform 0.5s linear;
 }
 .album-cover, .category-icon, .playlist-icon {
     width: 150px;
@@ -24,7 +32,7 @@ a {
     margin: 4.5%;
 }
 .release, .category, .playlist {
-    padding: 10px;
+    padding: 11px;
     text-align: center;
 }
 .album-name, .artist, .category-name, .playlist-name {
@@ -33,7 +41,7 @@ a {
     overflow: hidden;
     margin: 0;
     text-decoration: none;
-    color: black;
+    color: darkgray;
 }
 .artist {
     font-size: 14px;
@@ -63,9 +71,24 @@ a {
 }
 .scroll-parent:hover .fas {
     font-size: 49px;
-    color: grey;
+    color: darkgray;
     opacity: 0.8;
     visibility: visible;
+}
+.tag-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+}
+.show-button {
+    background-color: darkgray;
+    color: black;
+    font-size: 15px;
+    border-radius: 18px;
+    box-shadow: 0 0 15px darkgrey;
+    padding: 0 10px;
+    border: none;
+    outline: none;
 }
 
 @media (min-width: 1920px) {

@@ -2,13 +2,15 @@
 <html lang="en">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 <link rel="stylesheet" href="./CSS/Banner.css">
-<link rel="stylesheet" href="./CSS/newreleases.css">
+<link rel="stylesheet" href="./CSS/homepage.css">
+<link rel="stylesheet" href="./CSS/header.css">
 <script src="./Services/banner.js"></script>
 <script src="./Services/newrealeses.js"></script>
 <script src="./Services/categories.js"></script>
 <script src="./Services/horizontal-scroll.js"></script>
 <script src="./Services/featured-playlist.js"></script>
 <script src="./Services/userprofile.js"></script>
+<script src="./Services/search.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,15 +18,36 @@
     <title>Homepage</title>
 </head>
 <body>
-    <div>
-
-        <div class="login-container">
-            <div class="login-wrapper">
-                <div class="login">
-                    <a href="/login">login</a>
+    <div class="home-page">
+        <div class="header-container">
+            <div class="name-container">
+                <div class="name-parent">
+                    <a href="index.html" class="name-anchor">
+                        <h1 class="name">Verse</h1>
+                        <h3 class="sub-name">from Spotify</h3>
+                    </a>
                 </div>
-                <div class="logged-in">
+            </div>
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="search" class="search-box" placeholder="Search your Music" onkeyup="search(event.target.value)" onclick="search(event)" >
+                    <div class="search-filter">
+                        <select name="select-music" id="search-select" aria-placeholder="Music Type" onchange="selection()"></select>
+                        
+                    </div>
+                </div>
+                <div class="search-result">
+                    
+                </div>
+            </div>
+            <div class="login-container">
+                <div class="login-wrapper">
+                    <div class="login-parent">
+                        <a href="/login" class="login">login</a>
+                    </div>
+                    <div class="logged-in">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,6 +73,11 @@
         </div>
         <div class="release-container">
             <div class="new-releases-parent scroll-wrapper">
+                <div class="tag-container">
+                    <h1 class="tag-name">New Realeases</h1>
+
+                    <button class="show-button">Show All</button>
+                </div>
                 <div class="new-releases scroll-parent">
                     <div class="scroll-previous">
                         <a class="scroll-back" onclick="scrollback('.release-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
@@ -66,6 +94,11 @@
 
         <div class="playlist-container">
             <div class="playlist-parent scroll-wrapper">
+                <div class="tag-container">
+                    <h1 class="tag-name">Editor's Choice</h1>
+
+                    <button class="show-button">Show All</button>
+                </div>
                 <div class="playlists scroll-parent">
                     <div class="scroll-previous">
                         <a class="scroll-back" onclick="scrollback('.playlist-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
@@ -81,6 +114,11 @@
         </div>
         <div class="categories-container">
             <div class="categories-parent scroll-wrapper">
+                <div class="tag-container">
+                    <h1 class="tag-name">Categories</h1>
+
+                    <button class="show-button">Show All</button>
+                </div>
                 <div class="categories scroll-parent">
                     <div class="scroll-previous">
                         <a class="scroll-back" onclick="scrollback('.category-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
@@ -97,3 +135,10 @@
     </div>
 </body>
 </html>
+
+<style>
+    body {
+        margin: 0;
+        background-color: black;
+    }
+</style>
