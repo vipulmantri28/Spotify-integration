@@ -12,7 +12,7 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-const URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8888/callback' : ''
+const URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8888/callback' : 'https://vipulmantri28.github.io/Spotify-integration/callback'
 
 var client_id = process.env.client_id; // Your client id
 var client_secret = process.env.client_secret // Your secret
