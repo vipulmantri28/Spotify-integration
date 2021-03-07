@@ -62,6 +62,7 @@ const search = debounce(function(value) {
                 parentDiv.className = "result-parent";
                 typeDiv.className = "type-container";
                 showBtn.className = "show-btn";
+                parentType.className = "type-parent";
                 showBtn.textContent = "Show All";
                 showBtn.addEventListener("click", function () {
             

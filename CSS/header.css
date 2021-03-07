@@ -136,3 +136,6 @@ option {
 .search-wrapper {
     position: relative;
 }
+.type-parent {
+    color: black;
+}

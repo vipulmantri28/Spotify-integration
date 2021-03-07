@@ -12,10 +12,11 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+const URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8888/callback' : ''
 
-var client_id = 'ff0cf46d6c4a4544ad70d1e446467047'; // Your client id
-var client_secret = '48e1d61fa7e14e1ab271a252c5f93c8b'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback/'; // Your redirect uri
+var client_id = process.env.client_id; // Your client id
+var client_secret = process.env.client_secret // Your secret
+var redirect_uri = URL; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
