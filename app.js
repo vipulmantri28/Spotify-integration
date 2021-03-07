@@ -12,11 +12,36 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-const URL = process.env.NODE_ENV === 'dev' ? 'http://localhost:8888/callback' : 'https://vipulmantri28.github.io/Spotify-integration/callback'
+var dotenv = require('dotenv');
+console.log("dotenv", typeof(process.env.NODE_ENV));
 
+dotenv.config();
+var url;
+console.log("process.env.NODE_ENV", process.env.NODE_ENV.toString())
+const env = process.env.NODE_ENV;
+console.log("env", env);
+switch (env) {
+  case 'development':
+    console.log('hello dev')
+    url = ""
+    break;
+  case 'prod':
+    console.log('hello prod')
+    url = "https://vipulmantri28.github.io/verse/"
+    break;
+}
+// env === "development" ? URL = "http://localhost:8888/callback" :  URL = "https://vipulmantri28.github.io/Spotify-integration/";
+// if (env === "prod") {
+//   console.log('if')
+//   URL = 'http://localhost:8888/callback';
+// } else if(env == 'prod') {
+//   console.log("else")
+//  URL = 'https://vipulmantri28.github.io/Spotify-integration/';
+// }
+console.log("URL", url)
 var client_id = process.env.client_id; // Your client id
 var client_secret = process.env.client_secret // Your secret
-var redirect_uri = URL; // Your redirect uri
+var redirect_uri = url; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
