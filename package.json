@@ -4,7 +4,7 @@
   "description": "Basic examples of the Spotify authorization flows through OAuth 2",
   "version": "0.0.2",
   "scripts": {
-    "start": "SET NODE_ENV=development && node app.js",
+    "dev": "SET NODE_ENV=dev && node app.js",
     "prod": "SET NODE_ENV=prod && node app.js"
   },
   "dependencies": {
