@@ -1,0 +1,45 @@
+.banner-div {
+    padding: 2% 3%;
+    position: relative;
+}
+.banner-images {
+    width: 450px;
+    border-radius: 50PX;
+}
+.banner-name-div {
+    display: none;
+}
+.sec-banner-parent {
+    display: flex;
+}
+.banner-section {
+    overflow: hidden;
+    margin: 1.6%;
+}.banner-anchor {
+    display: flex;
+}
+.banner-anchor:hover>.banner-name-div {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.banner-anchor:hover::before {
+    content: '';
+    background-color: black;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    opacity: 0.6;
+    left: 0;
+}
+.banner-anchor:hover > .banner-images {
+    box-shadow: 0px 10px 25px darkgrey;
+}
+.banner-name {
+    padding: 50% 30%;
+}
