@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv');
 var client_id = process.env.client_id; // Your client id
 var client_secret = process.env.client_secret // Your secret
-var redirect_uri= 'https://vipulmantri28.github.io/verse/callback/'; // Your redirect uri
+var redirect_uri = 'https://vipulmantri28.github.io/verse/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
