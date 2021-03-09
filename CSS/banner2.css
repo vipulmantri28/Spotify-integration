@@ -11,6 +11,8 @@
 }
 .sec-banner-parent {
     display: flex;
+    position: relative;
+    left: 33%;
 }
 .banner-section {
     overflow: hidden;
@@ -42,4 +44,7 @@
 }
 .banner-name {
     padding: 50% 30%;
+}
+.right-img {
+    right: 335%;
 }
