@@ -8,11 +8,13 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
     for (item of data.items) {
         const img = item.album.images;
         const name = item.name;
+        const preview = item.preview_url;
         const bannerImage = document.createElement('img');
         const bannerName = document.createElement('h2');
         const bannerAnchor  = document.createElement('a')
         const bannerdiv = document.createElement('div');
         const bannerdivname = document.createElement('div');
+        let audioelm = document.createElement('audio');
         let imgsrc;
 
         if (img.length > 0) {
@@ -20,22 +22,30 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
         }else {
             imgsrc = "./images/blank-profile.png";
         }
-
+        
+        if (preview !== null) {
+            audioelm.src = preview;
+            audioelm.controls = 'controls'
+        }
         bannerImage.src = imgsrc;
-        bannerName.textContent = name
-        bannerAnchor.href = "#"
+        bannerName.textContent = name;
+        bannerAnchor.href = "#";
+
+        bannerName.style.textTransform = 'Capitalize';
 
         bannerparent.appendChild(bannerdiv);
         bannerdiv.appendChild(bannerAnchor);
         bannerAnchor.appendChild(bannerImage);
         bannerAnchor.appendChild(bannerdivname);
         bannerdivname.appendChild(bannerName);
+        bannerdivname.appendChild(audioelm)
 
         bannerImage.className = "banner-images";
         bannerName.className = "banner-name";
         bannerdiv.className = "banner-div";
         bannerAnchor.className = "banner-anchor";
         bannerdivname.className = "banner-name-div";
+
         
     }
     

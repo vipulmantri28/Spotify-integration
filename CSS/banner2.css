@@ -1,10 +1,17 @@
+@media (min-width: 1080px) {
+    .banner-images {
+        width:450px;
+        border-radius: 50px;
+    }
+}
+
 .banner-div {
     padding: 2% 3%;
     position: relative;
 }
 .banner-images {
-    width: 450px;
-    border-radius: 50PX;
+    width: 85px;
+    border-radius: 15px;
 }
 .banner-name-div {
     display: none;

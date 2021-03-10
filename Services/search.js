@@ -37,8 +37,14 @@ const search = debounce(function(value) {
     .then(response => response.json().then(data => {
         const grandparent = document.querySelector('.search-result')
         grandparent.innerHTML = '';
-        grandparent.style.height = "320px";
-        grandparent.style.padding = "25px";
+
+        if (window.width > 640) {
+            grandparent.style.height = "320px";
+            grandparent.style.padding = "25px";
+        }else {
+            grandparent.style.height = "220px";
+            grandparent.style.padding = "10px";
+        }
         
         for(type in data) {
 
@@ -66,7 +72,7 @@ const search = debounce(function(value) {
                 showBtn.textContent = "Show All";
                 showBtn.addEventListener("click", function () {
             
-                    if (window.innerWidth > 1024) {
+                    if (window.innerWidth > 640) {
                         if (parentDiv.style.height === "590px") {
                         showBtn.textContent = "Show All";
                         parentDiv.style.height = "150px";
@@ -75,7 +81,13 @@ const search = debounce(function(value) {
                             showBtn.textContent = "Show Less";
                         }
                     }else {
-                        parentDiv.style.height = "auto";
+                        if (parentDiv.style.height == '400px') {
+                            parentDiv.style.height = "80px";
+                            showBtn.textContent = 'Show All';
+                        }else {
+                            parentDiv.style.height = "400px";
+                            showBtn.textContent = 'Show Less';
+                        }
                     }
     
                 });
@@ -150,3 +162,12 @@ window.addEventListener("load",function filter() {
     })
 }
 )
+
+function searchexp() {
+    let searchbox = document.querySelector('.search-box');
+    if (searchbox.style.display = 'none') {
+        searchbox.style.display = 'block';
+    }else if (searchbox.style.dispay = 'block') {
+        searchbox.style.display = 'none';
+    }
+}

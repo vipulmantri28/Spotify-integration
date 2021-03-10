@@ -21,6 +21,7 @@ h1, h2, h3, h4 {
 .release-wrapper, .category-wrapper, .playlist-wrapper {
     display: flex;
     transition: transform 0.5s linear;
+    flex-wrap: nowrap;
 }
 .album-cover, .category-icon, .playlist-icon {
     width: 150px;
