@@ -246,16 +246,22 @@
     .search-result {
         width: 31vw;
         border-radius: 22px;
-        left: 50px;
+        left: 130px;
         top: 31px;
         max-width: 1500px;
         transform: translate(0);
+    }
+    .show-btn {
+        display: block;
     }
     .result-container {
         margin: 0 19px;
     }
     .result-parent {
+        overflow: hidden;
         height: 150px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     .type-container > h2 {
         font-size: 20px;
@@ -270,7 +276,7 @@
     }
     .result-child {
         padding: 13px 8px;
-        width: 12.4%;
+        width: 20%;
     }
     .type-container {
         padding: 0 30px;
