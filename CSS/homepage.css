@@ -13,28 +13,38 @@ h1, h2, h3, h4 {
 }
 
 
-/* CSS for content */
-.new-releases, .categories, .playlists {
-    position: relative;
+.new-releases-parent, .categories-parent, .playlist-parent {
+    overflow: hidden;
+    margin: 4.5%;
+}
+.tag-container {
     display: flex;
+    justify-content: space-between;
+    padding: 2vw;
+}
+.tag-name {
+    font-size: 6vw;
+}
+.show-button, .scroll-previous, .scroll-next {
+    display: none;
 }
 .release-wrapper, .category-wrapper, .playlist-wrapper {
     display: flex;
     transition: transform 0.5s linear;
     flex-wrap: nowrap;
 }
+.new-releases, .categories, .playlists {
+    position: relative;
+    display: flex;
+    overflow: scroll;
+}
 .album-cover, .category-icon, .playlist-icon {
-    width: 150px;
-    height: 150px;
+    width: 25vw;
+    height: 25vw;
     border-radius: 10px;
 }
-.new-releases-parent, .categories-parent, .playlist-parent {
-    overflow: hidden;
-    margin: 4.5%;
-}
-.release, .category, .playlist {
-    padding: 11px;
-    text-align: center;
+.album-div, .category-div, .playlist-div {
+    width: 25vw;
 }
 .album-name, .artist, .category-name, .playlist-name {
     white-space: nowrap;
@@ -43,76 +53,72 @@ h1, h2, h3, h4 {
     margin: 0;
     text-decoration: none;
     color: darkgray;
+    font-size: 3vw;
 }
-.artist {
-    font-size: 14px;
+.release, .category, .playlist {
+    padding: 11px;
+    text-align: center;
 }
-.album-name, .category-name, .playlist-name {
-    font-size: 17px;
-}
-.album-div, .category-div, .playlist-div {
-    width: 150px;
-}
-.scroll-previous, .scroll-next {
-    position: absolute;
-    top: 29%;
-    z-index: 999;
-}
-.scroll-next {
-    right: 0;
-}
-.scroll-previous {
-    left: 0;
-}
-.scroll-back {
-    display: none;
-}
-.fas {
-    visibility: hidden;
-}
-.scroll-parent:hover .fas {
-    font-size: 49px;
-    color: darkgray;
-    opacity: 0.8;
-    visibility: visible;
-}
-.tag-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 50px;
-}
-.show-button {
-    background-color: darkgray;
-    color: black;
-    font-size: 15px;
-    border-radius: 18px;
-    box-shadow: 0 0 15px darkgrey;
-    padding: 0 10px;
-    border: none;
-    outline: none;
-}
+/* CSS for content */
 
-@media (min-width: 1920px) {
-    .release, .category, .playlist {
-        padding: 20px;
+@media (min-width: 1024px) {
+    .tag-name {
+        font-size: 2vw;
+    }
+    .show-button, .scroll-previous, .scroll-next {
+        display: block;
     }
     .album-cover, .category-icon, .playlist-icon {
-        width: 250px;
-        height: 250px;
+        width: 10vw;
+        height: 10vw;
     }
-    .categories-parent, .new-releases-parent, .playlist-parent {
-        margin: 3%;
+    .scroll-parent {
+        overflow: hidden;
+    }
+    .release, .category, .playlist {
+        padding: 20px;
+        width: 10vw;
     }
     .album-div, .category-div, .playlist-div {
-        width: 250px;
+        width: 10vw;
     }
-    .album-name, .category-name, .playlist-name {
-        font-size: 22px;
-    }
-    .artist {
-        font-size: 19px;
+    .album-name, .artist, .category-name, .playlist-name {
+        font-size: 1vw;
     }
     .scroll-previous, .scroll-next {
-        top: 38%;
+        position: absolute;
+        top: 29%;
+        z-index: 2;
+    }
+    .scroll-next {
+        right: 0;
+    }
+    .scroll-previous {
+        left: 0;
+    }
+    .scroll-back {
+        display: none;
+    }
+    .fa-chevron-circle-left, .fa-chevron-circle-right {
+        visibility: hidden;
+    }
+    .scroll-parent:hover .fas {
+        font-size: 3vw;
+        color: darkgray;
+        opacity: 0.8;
+        visibility: visible;
+    }
+    .tag-container {
+        padding: 20px 50px;
+    }
+    .show-button {
+        background-color: darkgray;
+        color: black;
+        font-size: 1vw;
+        border-radius: 2vw;
+        box-shadow: 0 0 0.5vw darkgrey;
+        padding: 0 1vw;
+        border: none;
+        outline: none;
     }
 }

@@ -1,17 +1,12 @@
-@media (min-width: 1080px) {
-    .banner-images {
-        width:450px;
-        border-radius: 50px;
-    }
-}
+
 
 .banner-div {
     padding: 2% 3%;
     position: relative;
 }
 .banner-images {
-    width: 85px;
-    border-radius: 15px;
+    width: 26vw;
+    border-radius: 3vw;
 }
 .banner-name-div {
     display: none;
@@ -47,11 +42,12 @@
     left: 0;
 }
 .banner-anchor:hover > .banner-images {
-    box-shadow: 0px 10px 25px darkgrey;
+    box-shadow: 0px 1vw 3vw darkgrey;
 }
 .banner-name {
-    padding: 50% 30%;
+    padding: 13vw 0;
+    font-size: 2vw;
 }
 .right-img {
-    right: 335%;
+    right: 330%;
 }

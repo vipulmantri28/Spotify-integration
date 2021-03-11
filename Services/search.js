@@ -38,19 +38,19 @@ const search = debounce(function(value) {
         const grandparent = document.querySelector('.search-result')
         grandparent.innerHTML = '';
 
-        if (window.width > 640) {
-            grandparent.style.height = "320px";
-            grandparent.style.padding = "25px";
-        }else {
-            grandparent.style.height = "220px";
-            grandparent.style.padding = "10px";
-        }
         
         for(type in data) {
-
+            
             const currType = type;
             const currValues = data[type];
             if (currValues.items.length > 0) {
+                if (window.innerWidth > 640) {
+                    grandparent.style.height = "320px";
+                    grandparent.style.padding = "25px";
+                }else {
+                    grandparent.style.height = "220px";
+                    grandparent.style.padding = "10px";
+                }
                 const parentContainer = document.createElement('div');
                 const parentType = document.createElement('h2');
                 const showBtn = document.createElement('button');
@@ -162,12 +162,3 @@ window.addEventListener("load",function filter() {
     })
 }
 )
-
-function searchexp() {
-    let searchbox = document.querySelector('.search-box');
-    if (searchbox.style.display = 'none') {
-        searchbox.style.display = 'block';
-    }else if (searchbox.style.dispay = 'block') {
-        searchbox.style.display = 'none';
-    }
-}

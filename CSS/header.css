@@ -1,18 +1,31 @@
 .fa-search, .fa-ellipsis-v {
     font-size: 25px;
     color: darkgray;
-    visibility: visible;
+}
+.fa-times-circle {
+    visibility: hidden;
+    color: black;
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 10px;
+    background-color: darkgray;
+    border-radius: 25px;
+}
+.logo, .search-login {
+    display: flex;
+    align-items: center;
 }
 .header-container {
     height: auto;
     justify-content: space-between;
     display: flex;
-    justify-content: space-evenly;
     margin: 0 4.5%;
     align-items: center;
 }
-.name-container {
-    padding-right: 41%;
+.name-container, .search-container {
+    padding: 0 25px;
 }
 .name {
     font-size: 45px;
@@ -21,8 +34,11 @@
 .sub-name {
     font-size: 15px;
 }
-.search-box, .search-filter, .profile-div {
+.search-filter, .profile-div {
     display: none;
+}
+.search-wrapper {
+    visibility: hidden;
 }
 .search-result {
     width: 280px;
@@ -39,11 +55,10 @@
     border-radius: 15px;
 }
 .search-box {
-    width: 320px;
+    width: 100vw;
     position: absolute;
     padding: 0 25px;
     left: 0;
-    z-index: 2;
     top: 0;
     font-size: 17px;
     height: 50px;
@@ -53,6 +68,7 @@
     background-color: darkgray;
     color: black;
     border: none;
+    
 }
 .search-box:focus {
     outline: none;
@@ -109,10 +125,24 @@
     margin: 8px 0;
 }
 
-
-@media (min-width:  426px) {
+@media (min-width: 426px) {
+    .fa-search, .fa-times-circle {
+        display: none;
+    }
+    .search-box {
+        visibility: visible;
+        width: 400px;
+        left: 250px;
+        top: 12px;
+    }
+    .search-result {
+        left: 450px;
+        top: 45px;
+        width: 350px;
+    }
+}
+@media (min-width:  1024px) {
     .name-container {
-
         padding: 0;
     }
     .fa-search, .fa-ellipsis-v {
@@ -122,8 +152,11 @@
         text-align: center;
     }
     .name {
-        font-size: 70px;
-        padding-right: 40px;
+        font-size: 4vw;
+        padding-right: 2vw;
+    }
+    .sub-name {
+        font-size: 1.2vw;
     }
     .login-container {
         display: flex;
@@ -132,7 +165,7 @@
         display: flex;
     }
     .profile-div {
-        display: block;
+        display: none;
         align-self: center;
         color: darkgray;
         padding: 5px 11px;
@@ -140,34 +173,41 @@
     }
     .login {
         color: darkgray;
+        font-size: 1.5vw;
+        text-transform: capitalize;
     }
     .header-container {
-        height: 150px;
-        
+        height: 8vw;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background-color: black;
     }
     .search-box {
         display: block;
-        width: 900px;
-        padding-left: 193px;
-        font-size: 23px;
-        padding: 0 28px;
-        box-shadow: 0 0 40px darkgray;
-        z-index: 0;
-    }    
+        left: -60vw;
+        width: 46vw;
+        top: -1.5vw;
+        font-size: 1.5vw;
+        padding: 0 1vw;
+        box-shadow: 0 0 2vw darkgrey;
+        height: 3vw;
+        border-radius: 2vw;
+        padding-left: 11vw;
+    }
     .search-filter {
         display: block;
         position: absolute;
-        top: 3px;
-        left: 20px;
-        transform: translate(-10px);
+        top: -1.5vw;
+        left: -59vw;
+        visibility: visible;
     }
     #search-select {
-        font-size: 18px;
-        padding: 12px 0;
-        border-radius: 24px;
+        font-size: 1vw;
+        padding: 0.9vw 0;
+        border-radius: 2vw;
         color: black;
         background-color: darkgray;
-        box-shadow: 0px 0px 6px darkgray;
         border: none;
         outline: none;
         z-index: 3;
@@ -176,10 +216,11 @@
         border-radius: 15px;
     }
     .search-result {
-        width: 850px;
+        width: 550px;
         border-radius: 22px;
+        left: 603px;
+        top: 90px;
     }
-
     .result-container {
         margin: 0 19px;
     }
@@ -214,5 +255,10 @@
     }
     .search-wrapper {
         position: relative;
+    }
+    .profile-image {
+        width: 5vw;
+        height: 5vw;
+        border-radius: 5vw;
     }
 }

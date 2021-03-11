@@ -14,7 +14,6 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
         const bannerAnchor  = document.createElement('a')
         const bannerdiv = document.createElement('div');
         const bannerdivname = document.createElement('div');
-        let audioelm = document.createElement('audio');
         let imgsrc;
 
         if (img.length > 0) {
@@ -23,10 +22,6 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
             imgsrc = "./images/blank-profile.png";
         }
         
-        if (preview !== null) {
-            audioelm.src = preview;
-            audioelm.controls = 'controls'
-        }
         bannerImage.src = imgsrc;
         bannerName.textContent = name;
         bannerAnchor.href = "#";
@@ -38,7 +33,6 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
         bannerAnchor.appendChild(bannerImage);
         bannerAnchor.appendChild(bannerdivname);
         bannerdivname.appendChild(bannerName);
-        bannerdivname.appendChild(audioelm)
 
         bannerImage.className = "banner-images";
         bannerName.className = "banner-name";
@@ -72,12 +66,12 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
             a -= 100
 
             if (a == -300) {
-                left.style.left = "335%"
+                left.style.left = "330%"
                 right.style.right = "0"
             }else if(a == -1000) {
                 a = 0;
                 left.style.left = "0";
-                right.style.right = "335%"
+                right.style.right = "330%"
             }
 
             bannerparent.dataset.slidepos = a;
