@@ -1,0 +1,113 @@
+a {
+    text-decoration: none;
+    color: darkgray;
+}
+h1, h2, h3, h4 {
+    color: darkgray;
+    margin: 0;
+}
+p {
+    color: darkgray;
+    margin: 0;
+    text-transform: capitalize;
+}
+body {
+    margin: 0;
+    background-color: black;
+}
+
+
+
+
+.value-container {
+    margin: 4%;
+    overflow: hidden;
+}
+.value-parent {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+h2.value-name {
+    font-size: 20px;
+    text-transform: capitalize;
+    text-decoration: 3px underline;
+}
+button.show-all {
+    display: none;
+    background-color: darkgray;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 0 10px darkgrey;
+    outline: none;
+}
+.item-parent {
+    display: flex;
+    position: relative;
+}
+i.fas.fa-chevron-circle-left {
+    display: none;
+    color: darkgray;
+    font-size: 45px;
+    position: absolute;
+    z-index: 2;
+    top: 60px;
+    left: 0;
+}
+i.fas.fa-chevron-circle-right {
+    color: darkgray;
+    font-size: 45px;
+    position: absolute;
+    z-index: 2;
+    top: 60px;
+    right: 0%;
+    display: none;
+}
+.item-wrapper {
+    display: flex;
+    overflow: scroll;
+}
+.item-div {
+    padding: 5px;
+    width: 20vw;
+    max-width: 150px;
+}
+img.item-img {
+    width: 20vw;
+    max-width: 150px;
+}
+.item-name-div {
+    text-align: center;
+}
+p.iteam-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-top: 5px;
+    font-size: 12px;
+}
+p.artist {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+
+@media (min-width:425px) {
+    h2.value-name {
+        font-size: 30px;
+    }
+    p.iteam-name, p.artist {
+        font-size: 15px;
+    }
+    .item-wrapper {
+        overflow: inherit;
+    }
+    i.fas.fa-chevron-circle-right {
+        display: block;
+    }
+    button.show-all {
+        display: block;
+    }
+}

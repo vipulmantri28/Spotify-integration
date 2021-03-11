@@ -1,0 +1,24 @@
+.controls-container, .controls {
+    display: flex;
+    align-items: center;
+}
+.fa-step-backward , .fa-step-forward {
+    color: darkgray;
+    font-size: 17px;
+}
+.fa-play-circle, .fa-pause-circle {
+    background-color: black;
+    color: darkgray;
+    font-size: 20px;
+    box-shadow: 0 0 10px darkgray;
+}
+.player-parent {
+    display: flex;
+    margin: 0 10%;
+}
+.song-container {
+    flex-basis: 45%;
+}
+.controls-container {
+    padding-right: 50px;
+}

@@ -3,11 +3,11 @@
     color: darkgray;
 }
 .fa-times-circle {
-    visibility: hidden;
+    display: none;
     color: black;
     font-size: 40px;
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 0;
     padding: 5px 10px;
     background-color: darkgray;
@@ -18,10 +18,14 @@
     align-items: center;
 }
 .header-container {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: black;
     height: auto;
     justify-content: space-between;
     display: flex;
-    margin: 0 4.5%;
+    padding: 0 4.5%;
     align-items: center;
 }
 .name-container, .search-container {
@@ -37,9 +41,7 @@
 .search-filter, .profile-div {
     display: none;
 }
-.search-wrapper {
-    visibility: hidden;
-}
+
 .search-result {
     width: 280px;
     position: absolute;
@@ -57,18 +59,18 @@
 .search-box {
     width: 100vw;
     position: absolute;
-    padding: 0 25px;
+    padding: 25px;
     left: 0;
     top: 0;
     font-size: 17px;
-    height: 50px;
-    border-radius: 25px;
+    height: 70px;
+    border-radius: 35px;
     text-transform: capitalize;
     outline: none;
     background-color: darkgray;
     color: black;
     border: none;
-    
+    display: none;
 }
 .search-box:focus {
     outline: none;
@@ -130,20 +132,44 @@
         display: none;
     }
     .search-box {
-        visibility: visible;
-        width: 400px;
-        left: 250px;
-        top: 12px;
+        display: block;
+        width: 35vw;
+        max-width: 300px;
+        box-shadow: 0 0 15px darkgrey;
+        height: 40px;
+        position: inherit;
     }
     .search-result {
-        left: 450px;
-        top: 45px;
-        width: 350px;
+        left: 187px;
+        top: 43px;
+        max-width: 300px;
+        width: 27vw;
+    }
+    .name-container, .search-container {
+        padding: 0 50px;
+        position: relative;
+    }
+    .search-login {
+        flex-basis: 60%;
+    }
+    .type-parent {
+        font-size: 15px;
+    }
+    .result-child {
+        width: 20%;
+    }
+    .result-parent {
+        overflow: scroll;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .show-btn {
+        display: none;
     }
 }
 @media (min-width:  1024px) {
-    .name-container {
-        padding: 0;
+    .search-container {
+        padding: 0 130px;
     }
     .fa-search, .fa-ellipsis-v {
         display: none;
@@ -152,11 +178,11 @@
         text-align: center;
     }
     .name {
-        font-size: 4vw;
-        padding-right: 2vw;
+        font-size: 30px;
+        padding-right: 20px;
     }
     .sub-name {
-        font-size: 1.2vw;
+        font-size: 20px;
     }
     .login-container {
         display: flex;
@@ -173,39 +199,41 @@
     }
     .login {
         color: darkgray;
-        font-size: 1.5vw;
+        font-size: 20px;
         text-transform: capitalize;
     }
     .header-container {
-        height: 8vw;
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        background-color: black;
+        height: 100px;
     }
     .search-box {
         display: block;
-        left: -60vw;
-        width: 46vw;
-        top: -1.5vw;
-        font-size: 1.5vw;
-        padding: 0 1vw;
-        box-shadow: 0 0 2vw darkgrey;
-        height: 3vw;
-        border-radius: 2vw;
-        padding-left: 11vw;
+        width: 35vw;
+        max-width: 1500px;
+        font-size: 15px;
+        padding: 0 15px;
+        box-shadow: 0 0 20px darkgrey;
+        height: 40px;
+        border-radius: 20px;
+        padding-left: 125px;
     }
     .search-filter {
         display: block;
+        font-size: 12px;
+        padding: 12px 0;
+        border-radius: 25px;
+        color: black;
+        background-color: darkgray;
+        border: none;
+        outline: none;
+        z-index: 3;
+        width: 120px;
         position: absolute;
-        top: -1.5vw;
-        left: -59vw;
-        visibility: visible;
+        top: 0;
     }
     #search-select {
-        font-size: 1vw;
-        padding: 0.9vw 0;
-        border-radius: 2vw;
+        font-size: 12px;
+        padding: 0;
+        border-radius: 25px;
         color: black;
         background-color: darkgray;
         border: none;
@@ -216,10 +244,12 @@
         border-radius: 15px;
     }
     .search-result {
-        width: 550px;
+        width: 31vw;
         border-radius: 22px;
-        left: 603px;
-        top: 90px;
+        left: 50px;
+        top: 31px;
+        max-width: 1500px;
+        transform: translate(0);
     }
     .result-container {
         margin: 0 19px;
@@ -257,8 +287,8 @@
         position: relative;
     }
     .profile-image {
-        width: 5vw;
-        height: 5vw;
-        border-radius: 5vw;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
     }
 }

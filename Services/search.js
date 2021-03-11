@@ -162,3 +162,14 @@ window.addEventListener("load",function filter() {
     })
 }
 )
+searchexp = function() {
+    let searchbox = document.querySelector('.search-box');
+    let close = document.querySelector('.fa-times-circle')
+    if (searchbox.style.display == "block") {
+        searchbox.style.display = "none";
+        close.style.display = "none";
+    }else  {
+        searchbox.style.display = "block";
+        close.style.display = "block";
+    }
+}

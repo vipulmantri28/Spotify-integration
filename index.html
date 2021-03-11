@@ -2,26 +2,22 @@
 <html lang="en">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 <link rel="stylesheet" href="./CSS/Banner.css">
-<link rel="stylesheet" href="./CSS/homepage.css">
 <link rel="stylesheet" href="./CSS/header.css">
 <link rel="stylesheet" href="./CSS/banner2.css">
-<!-- <script src="./Services/banner.js"></script> -->
-<script src="./Services/newrealeses.js"></script>
-<script src="./Services/categories.js"></script>
-<script src="./Services/horizontal-scroll.js"></script>
-<script src="./Services/featured-playlist.js"></script>
+<link rel="stylesheet" href="./CSS/homepage2.css">
+<link rel="stylesheet" href="./CSS/player.css">
+<script src="./Services/api-call-home.js"></script>
+<script src="./Services/index.js"></script>
 <script src="./Services/userprofile.js"></script>
 <script src="./Services/search.js"></script>
 <script src="./Services/banner2.js"></script>
-<script src="./Services/show-all.js"></script>
-<script src="./Services/functions.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
 </head>
-<body>
+<body onload="app.init()">
     <div class="home-page">
         <div class="header-container">
             <div class="logo">
@@ -76,67 +72,12 @@
                 </div>
                 </div>
         </div>
-        <div class="release-container">
-            <div class="new-releases-parent scroll-wrapper">
-                <div class="tag-container">
-                    <h1 class="tag-name">New Realeases</h1>
+            
+        <div class="new-home">
 
-                    <button class="show-button" onclick="showall('.release-wrapper')">Show All</button>
-                </div>
-                <div class="new-releases scroll-parent">
-                    <div class="scroll-previous">
-                        <a class="scroll-back" onclick="scrollback('.release-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
-                    </div>
-                    <div class="release-wrapper scroll-container" id="release-wrapper">
-                        
-                    </div>
-                    <div class="scroll-next">
-                        <a class="scroll-forward" onclick="scrollforward('.release-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="playlist-container">
-            <div class="playlist-parent scroll-wrapper">
-                <div class="tag-container">
-                    <h1 class="tag-name">Editor's Choice</h1>
 
-                    <button class="show-button" onclick="showall('.playlist-wrapper')">Show All</button>
-                </div>
-                <div class="playlists scroll-parent">
-                    <div class="scroll-previous">
-                        <a class="scroll-back" onclick="scrollback('.playlist-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
-                    </div>
-                    <div class="playlist-wrapper scroll-container" id="playlist-wrapper">
-                        
-                    </div>
-                    <div class="scroll-next">
-                        <a class="scroll-forward" onclick="scrollforward('.playlist-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="categories-container">
-            <div class="categories-parent scroll-wrapper">
-                <div class="tag-container">
-                    <h1 class="tag-name">Categories</h1>
-
-                    <button class="show-button" onclick="showall('.category-wrapper')">Show All</button>
-                </div>
-                <div class="categories scroll-parent">
-                    <div class="scroll-previous">
-                        <a class="scroll-back" onclick="scrollback('.category-wrapper')"><i class="fas fa-chevron-circle-left"></i></a>
-                    </div>
-                    <div class="category-wrapper scroll-container" id="category-wrapper">
-                        
-                    </div>
-                    <div class="scroll-next">
-                        <a class="scroll-forward" onclick="scrollforward('.category-wrapper')"><i class="fas fa-chevron-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="player-container">
             <div class="player-parent">
                 <div class="song-container">
@@ -152,32 +93,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="controls-container">
-                    <div class="previous-track">
-                        <i class="fas fa-step-backward"></i>
-                    </div>
-                    <div class="play-pause">
-                        <div class="play">
-                            <i class="far fa-play-circle"></i>
+                <div class="controls">
+                    <div class="controls-container">
+                        <div class="previous-track">
+                            <i class="fas fa-step-backward"></i>
                         </div>
-                        <div class="pause">
-                            <i class="far fa-pause-circle"></i>
+                        <div class="play-pause">
+                            <div class="playpause">
+                                <i class="far fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="next-track">
+                            <i class="fas fa-step-forward"></i>
                         </div>
                     </div>
-                    <div class="next-track">
-                        <i class="fas fa-step-forward"></i>
+                    <div class="volume-control">
+                        <div class="vol-control">
+                            <i class="fas fa-volume-down"></i>
+                            <input type="range" min="0" max="100" class="vol-slider" value="50">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 </html>
-
-<style>
-    body {
-        margin: 0;
-        background-color: black;
-    }
-    
-</style>
