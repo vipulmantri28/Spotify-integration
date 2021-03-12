@@ -1,0 +1,46 @@
+.playlist-name-div, .album-name-div {
+    margin: 20px 60px;
+    padding: 10px;
+}
+h2.playlist-name, h2.album-name {
+    font-size: 35px;
+    text-decoration: underline 2px;
+}
+h4.playlist-description, h4.album-artists {
+    font-size: 22px;
+    padding-top: 13px;
+}
+.playlist-div, .album-div {
+    display: flex;
+    justify-content: space-evenly;
+}
+.playlist-img-div, .album-img-div {
+    margin-top: 12px;
+}
+img.playlist-img, img.album-img {
+    width: 400px;
+    border-radius: 50px;
+    box-shadow: 0 0 50px darkgrey;
+}
+.tracks-div {
+    flex-basis: 60%;
+}
+a.track-anchor {
+    display: flex;
+    height: 35px;
+    justify-content: space-between;
+    padding: 15px;
+    box-shadow: 0 0 5px darkgrey;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    align-items: center;
+}
+p.track-name {
+    font-size: 20px;
+}
+p.track-artist {
+    font-size: 18px;
+}
+p.track-duration {
+    font-size: 18px;
+}

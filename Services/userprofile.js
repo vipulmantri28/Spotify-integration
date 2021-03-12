@@ -1,3 +1,6 @@
+let token = document.cookie.split('=');
+let access_token = token[1];
+
 fetch('https://api.spotify.com/v1/me', {
     headers:{'Authorization': 'Bearer ' + access_token}
 })

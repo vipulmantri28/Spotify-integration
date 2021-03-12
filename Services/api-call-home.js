@@ -1,8 +1,7 @@
-let access_token = location.hash.substr(0, location.hash.indexOf('&')).replace('#access_token=', '');
-console.log(access_token)
+
 const mapList = {
     playlists: 'playlist.html',
-    albums: 'album.html'
+    albums: 'album.html',
 }
 
 const listRendarar = {
@@ -11,7 +10,9 @@ const listRendarar = {
         this.fetch(apiurl)
     },
     fetch: function(apiurl){
-         fetch( apiurl, {
+        let token = document.cookie.split('=');
+        let access_token = token[1];
+        fetch( apiurl, {
             headers: {'Authorization': 'Bearer ' + access_token}
         }).then(response =>  { 
             return response.json()
@@ -83,7 +84,11 @@ const listRendarar = {
             itemAnchor.appendChild(itemNameDiv);
             itemNameDiv.appendChild(itemName);
 
+            if (type !== 'categories') {
             itemAnchor.href = '/' + mapList[type] + '?id=' + item.id;
+            } else {
+                itemAnchor.href = '#'
+            }
 
             if (item.artists) {
                 const artist = document.createElement('p');
@@ -102,7 +107,6 @@ const listRendarar = {
             itemNameDiv.className = 'item-name-div';
             itemName.className = 'iteam-name';
         }
-
 
         console.log(typeData);
         

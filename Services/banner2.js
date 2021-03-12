@@ -98,5 +98,4 @@ fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10',
         scroller();
     });
 
-    console.log(data)
 }))

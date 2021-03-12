@@ -1,24 +1,3 @@
-a {
-    text-decoration: none;
-    color: darkgray;
-}
-h1, h2, h3, h4 {
-    color: darkgray;
-    margin: 0;
-}
-p {
-    color: darkgray;
-    margin: 0;
-    text-transform: capitalize;
-}
-body {
-    margin: 0;
-    background-color: black;
-}
-
-
-
-
 .value-container {
     margin: 4%;
     overflow: hidden;

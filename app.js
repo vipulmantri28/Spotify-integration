@@ -12,6 +12,8 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var cookie = require('cookie');
+
 require('dotenv').config();
 
 var client_id = process.env.client_id; // Your client id
@@ -104,13 +106,9 @@ app.get('/callback', function(req, res) {
           // var response2 = response.clone()
           console.log(body);
         });
-
+        res.cookie('token', access_token, {maxAge:18000000})
+        res.redirect('/index.html')
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
       } else {
         res.redirect('/#' +
           querystring.stringify({

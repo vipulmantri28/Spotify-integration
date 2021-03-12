@@ -31,6 +31,7 @@ const search = debounce(function(value) {
         grandparent.style.height = "0px";
         grandparent.style.padding = "0px";
     }else {
+    const access_token = localStorage.getItem('access_token')
     fetch("https://api.spotify.com/v1/search" + query,
         {headers: {'Authorization' : 'Bearer ' + access_token}
     })
