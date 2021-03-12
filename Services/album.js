@@ -60,7 +60,7 @@ const album = {
 
             for (item of data.tracks.items) {
                 
-                const trackAnchor = document.createElement('a');
+                const trackAnchor = document.createElement('div');
                 const trackNameDiv = document.createElement('div');
                 const trackName = document.createElement('p');
                 const trackArtist = document.createElement('p');
@@ -91,7 +91,7 @@ const album = {
                 trackNameDiv.appendChild(trackName);
                 trackNameDiv.appendChild(trackArtist);
 
-                trackAnchor.className = 'track-anchor';
+                trackAnchor.className = 'track-anchor-div';
                 trackNameDiv.className = 'track-name-div';
                 trackName.className = 'track-name';
                 trackArtist.className = 'track-artist';

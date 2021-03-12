@@ -51,11 +51,13 @@ const showlist= {
 
             for (item of data.tracks.items) {
                 
-                const trackAnchor = document.createElement('a');
+                const trackAnchor = document.createElement('div');
                 const trackNameDiv = document.createElement('div');
                 const trackName = document.createElement('p');
                 const trackArtist = document.createElement('p');
                 const trackDuration = document.createElement('p');
+                const nameIconDiv = document.createElement('div');
+                const playIcon = document.createElement('i');
 
                 const track = item.track;
                 const name = track.name;
@@ -76,13 +78,27 @@ const showlist= {
                 trackArtist.textContent = artist;
                 trackDuration.textContent = time;
 
+                
+                if (track.preview_url) {
+                    playIcon.className = 'far fa-play-circle';
+                    trackAnchor.dataset.src = track.preview_url;
+                    trackAnchor.dataset.isavailable = 'true';
+                } else {
+                    playIcon.className = 'fas fa-external-link-square-alt';
+                    trackAnchor.dataset.src = track.external_urls.spotify;
+                    trackAnchor.dataset.isavailable = 'false';
+                }
+
                 tracksDiv.appendChild(trackAnchor);
-                trackAnchor.appendChild(trackNameDiv);
+                trackAnchor.appendChild(nameIconDiv);
                 trackAnchor.appendChild(trackDuration);
+                nameIconDiv.appendChild(playIcon);
+                nameIconDiv.appendChild(trackNameDiv);
                 trackNameDiv.appendChild(trackName);
                 trackNameDiv.appendChild(trackArtist);
 
-                trackAnchor.className = 'track-anchor';
+                nameIconDiv.className = 'name-icon-div';
+                trackAnchor.className = 'track-anchor-div';
                 trackNameDiv.className = 'track-name-div';
                 trackName.className = 'track-name';
                 trackArtist.className = 'track-artist';

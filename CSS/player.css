@@ -15,10 +15,22 @@
 .player-parent {
     display: flex;
     margin: 0 10%;
+    height: 60px;
+    background-color: black;
+    box-shadow: 0px 0px 15px darkgrey;
+    border-radius: 10px;
 }
 .song-container {
     flex-basis: 45%;
 }
 .controls-container {
     padding-right: 50px;
+}
+.player-container {
+    position: sticky;
+    bottom: 0;
+}
+.vol-slider {
+    height: 4px;
+    width: 100px;
 }

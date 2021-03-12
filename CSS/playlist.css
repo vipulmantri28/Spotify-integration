@@ -25,7 +25,7 @@ img.playlist-img, img.album-img {
 .tracks-div {
     flex-basis: 60%;
 }
-a.track-anchor {
+.track-anchor-div {
     display: flex;
     height: 35px;
     justify-content: space-between;
@@ -43,4 +43,13 @@ p.track-artist {
 }
 p.track-duration {
     font-size: 18px;
+}
+i.far.fa-play-circle, i.fas.fa-external-link-square-alt {
+    color: darkgray;
+    font-size: 28px;
+    padding: 0 10px;
+}
+.name-icon-div {
+    display: flex;
+    align-items: center;
 }
