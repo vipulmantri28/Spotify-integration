@@ -1,3 +1,11 @@
+const mapList = {
+    playlists: 'playlist.html',
+    albums: 'album.html',
+    episodes: 'episode.html',
+    shows: 'show,html',
+    tracks: 'track.html'
+}
+
 function debounce(func, timeout){
     let timer;
     return (...args) => {
@@ -8,15 +16,18 @@ function debounce(func, timeout){
 
 function selection () {
     const searchinp = document.querySelector('.search-box');
-
+    
     search(searchinp.value);
 }
+
 const search = debounce(function(value) {
+    
+    
     let searchInp = document.querySelector('#search-select').value;
     let querytypestring;
-
+    
     if (searchInp === "") {
-        let queryType = ['artist', 'album', 'playlist', 'track', 'show', 'episode' ];
+        let queryType = ['album', 'playlist', 'track', 'show', 'episode' ];
         querytypestring = queryType.toString();
     } else {
         querytypestring = searchInp;        
@@ -31,7 +42,8 @@ const search = debounce(function(value) {
         grandparent.style.height = "0px";
         grandparent.style.padding = "0px";
     }else {
-    const access_token = localStorage.getItem('access_token')
+        let token = document.cookie.split('=');
+    let access_token = token[1];
     fetch("https://api.spotify.com/v1/search" + query,
         {headers: {'Authorization' : 'Bearer ' + access_token}
     })
@@ -127,7 +139,7 @@ const search = debounce(function(value) {
                     
                     name.textContent = itemName;
                     img.src = showImg;
-                    anchor.href = "#"
+                    anchor.href = '/' + mapList[type] +'?id=' + item.id;
                     
                     div.className = "result-child";
                     anchor.className = "result-anchor";
@@ -149,7 +161,7 @@ const search = debounce(function(value) {
 }, 800)
 
 window.addEventListener("load",function filter() {
-    const searchFilter = [{title: 'Select Music Type', value: ""},{ title: 'Artists', value: "artist" }, {title: 'Albums', value: "album"}, {title:'Playlists', value: "playlist"},{title:'Tracks', value: "track"}, {title:'Shows', value: "shows"} , {title:'Episodes', value: "episode"} ];
+    const searchFilter = [{title: 'Select Music Type', value: ""}, {title: 'Albums', value: "album"}, {title:'Playlists', value: "playlist"},{title:'Tracks', value: "track"}, {title:'Shows', value: "shows"} , {title:'Episodes', value: "episode"} ];
     const selectorSelect = document.querySelector('#search-select');
     searchFilter.forEach(searchelm => {
         const selectorOption = document.createElement('Option');

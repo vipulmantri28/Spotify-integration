@@ -1,8 +1,5 @@
 
-const mapList = {
-    playlists: 'playlist.html',
-    albums: 'album.html',
-}
+
 
 const listRendarar = {
     render: function(url){

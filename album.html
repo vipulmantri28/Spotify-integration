@@ -1,15 +1,13 @@
 <html lang="en">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 <link rel="stylesheet" href="./CSS/header.css">
 <link rel="stylesheet" href="./CSS/reset.css">
 <link rel="stylesheet" href="./CSS/playlist.css">
-<script src="./Services/album.js"></script>
-<script src="./Services/search.js"></script>
-<script src="./Services/userprofile.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Album</title>
 </head>
 <body onload="album.app()">
     <div class="album-page">
@@ -28,7 +26,7 @@
                 </div>
             </div>
             <div class="search-login">
-
+                
                 <div class="search-container">
                     <i class="fas fa-search" onclick="searchexp()"></i>
                     <div class="search-wrapper">
@@ -56,9 +54,12 @@
             </div>
         </div>
         <div class="album-container">
-
+            
         </div>
     </div>
     
+    <script src="./Services/album.js"></script>
+    <script src="./Services/search.js"></script>
+    <script src="./Services/userprofile.js"></script>
 </body>
 </html>

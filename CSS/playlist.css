@@ -10,7 +10,7 @@ h4.playlist-description, h4.album-artists {
     font-size: 22px;
     padding-top: 13px;
 }
-.playlist-div, .album-div {
+.playlist-div, .album-div, .track-div {
     display: flex;
     justify-content: space-evenly;
 }
