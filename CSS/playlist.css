@@ -53,3 +53,12 @@ i.far.fa-play-circle, i.fas.fa-external-link-square-alt {
     display: flex;
     align-items: center;
 }
+.current-player {
+    background-color: darkgray;
+}
+.current-player  p {
+    color: black;
+}
+.current-player i.far.fa-play-circle, .current-player i.fas.fa-external-link-square-alt {
+    color: black;
+}

@@ -82,11 +82,11 @@ const showlist= {
                 if (track.preview_url) {
                     playIcon.className = 'far fa-play-circle';
                     trackAnchor.dataset.src = track.preview_url;
-                    trackAnchor.dataset.isavailable = 'true';
+                    trackAnchor.dataset.isavailable = true;
                 } else {
                     playIcon.className = 'fas fa-external-link-square-alt';
                     trackAnchor.dataset.src = track.external_urls.spotify;
-                    trackAnchor.dataset.isavailable = 'false';
+                    trackAnchor.dataset.isavailable = false;
                 }
 
                 tracksDiv.appendChild(trackAnchor);
@@ -103,6 +103,11 @@ const showlist= {
                 trackName.className = 'track-name';
                 trackArtist.className = 'track-artist';
                 trackDuration.className = 'track-duration';
+
+                trackAnchor.addEventListener('click',function() {
+                    playing.app(trackAnchor)   
+                })
+                
             }
 
             playlistDiv.appendChild(tracksDiv);

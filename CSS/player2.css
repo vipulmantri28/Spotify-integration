@@ -1,0 +1,20 @@
+.player-parent {
+    display: flex;
+    margin: 0 15%;
+    position: sticky;
+    bottom: 0;
+    background-color: black;
+    box-shadow: 0 0 15px darkgrey;
+    border-radius: 15px;
+}
+.player-track-div {
+    flex-basis: 40%;
+    font-size: 26px;
+}
+p.player-track-name, p.player-artist-name {
+    text-align: center;
+}
+.player-div {
+    flex-basis: 60%;
+    padding-left: 50px;
+}
