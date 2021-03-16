@@ -9,7 +9,7 @@
 }
 .player-track-div {
     flex-basis: 40%;
-    font-size: 26px;
+    font-size: 18px;
 }
 p.player-track-name, p.player-artist-name {
     text-align: center;
@@ -17,4 +17,50 @@ p.player-track-name, p.player-artist-name {
 .player-div {
     flex-basis: 60%;
     padding-left: 50px;
+}
+i.fas.fa-play-circle, i.fas.fa-pause-circle, i.fas.fa-list {
+    color: darkgray;
+    font-size: 20px;
+}
+i.fas.fa-play-circle {
+    display: none;
+}
+.i.fas.fa-list {
+    position: relative;
+}
+.playlist-name {
+    position: absolute;
+    top: -320px;
+    height: 300px;
+    overflow: overlay;
+    background-color: black;
+    box-shadow: 0 0 15px darkgrey;
+    border-radius: 16px;
+    display: block;
+    padding: 10px 20px;
+}
+.playlist-name .track-anchor-div {
+    height: 20px;
+    justify-content: space-around;
+}
+.playlist-name .far.fa-play-circle {
+    display: none;
+}
+.playlist-name .track-name-div {
+    width: 180px;
+}
+.playlist-name p.track-name {
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.playlist-name p.track-artist {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.playlist-name p.track-duration {
+    display: none;
 }

@@ -49,7 +49,6 @@ const playing = {
         if (anchor.dataset.isavailable === "true") {
             audiosrc = anchor.dataset.src;
             const playerPage = document.body;
-            const player = document.createElement('audio');
             const playerParent = document.createElement('div');
             const playerDiv = document.createElement('div');
             const playerTrackDiv = document.createElement('div');
@@ -61,9 +60,9 @@ const playing = {
             playerArtistName.className = "player-artist-name";
             playerTrackDiv.className = "player-track-div";
             playerParent.className = "player-parent";
-            player.className = "player";
+
             
-            player.src = audiosrc;
+
             playerTrackName.textContent = anchor.querySelector('.track-name').innerHTML;
             playerArtistName.textContent = anchor.querySelector('.track-artist').innerHTML;
             
@@ -72,13 +71,67 @@ const playing = {
             playerParent.appendChild(playerDiv);
             playerTrackDiv.appendChild(playerTrackName);
             playerTrackDiv.appendChild(playerArtistName);
-            playerDiv.appendChild(player);
+
+
+            const audio = new Audio(anchor.dataset.src);
+            const playicon = document.createElement('i');
+            const pauseicon = document.createElement('i');
+            pauseicon.className = "fas fa-pause-circle"
+            playicon.className = "fas fa-play-circle";
+
+            playicon.onclick = audio.play();
+            
+
+            playicon.addEventListener('click', function () {
+                audio.play();
+                playicon.style.display = 'none';
+                pauseicon.style.display = 'block';
+            })
+
+            pauseicon.addEventListener('click', function() {
+                audio.pause();
+                playicon.style.display = 'block';
+                pauseicon.style.display = 'none';
+            }) 
+
+            playerDiv.appendChild(playicon);
+            playerDiv.appendChild(pauseicon);
+
+            this.playlist()
+
+            
             console.log(anchor.dataset.src);
         } else {
             window.open(anchor.dataset.src)
         }
+    },
+    playlist: function() {
+        const playerDiv = document.querySelector('.player-div');
+        const playlistdiv = document.createElement('div');
+        const playlistIcon = document.createElement('i');
+        playlistIcon.className = "fas fa-list";
+        const listArr = [...document.querySelectorAll(`[data-isavailable= "true"]`)];
+
+        listArr.forEach(item => {            
+            const listItem = item.cloneNode(true);
+            playlistdiv.appendChild(listItem);
+        })
+        console.log(playlistdiv);
+        playlistdiv.style.display = 'none';
+
+        playlistIcon.addEventListener('click', function() {
+            if (playlistdiv.style.display == 'none') {
+                playlistdiv.style.display = 'block';
+            } else {
+                playlistdiv.style.display = 'none';
+            }
+        })
+
+        playlistdiv.className = 'playlist-name';
+        playerDiv.appendChild(playlistIcon);
+        playlistIcon.appendChild(playlistdiv);
     }
+    
 }
-
-
+    
 
