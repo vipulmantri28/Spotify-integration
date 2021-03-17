@@ -1,38 +1,5 @@
-// const list = [...document.querySelectorAll(`[data-isavailable*="true"]`)];
-
-// const previewUrl = [];
-// list.forEach(url => {
-//     previewUrl.push(url.dataset.src);
-// });
-// console.log(previewUrl);
-
-// class Player {
-
-//     anchor = null
-//     constructor(anchor) {
-//         this.anchor = anchor;
-//         this.app()
-//     }
-
-//     app() {
-//         this.anchor.style.backgroundColor = "darkgray";
-//         const icon = this.anchor.querySelector('i');
-//         const para = this.anchor.querySelectorAll('p');
-
-//         icon.style.color = 'black';
-        
-//         for (let i = 0; i < para.length; i++) {
-//             para[i].style.color = 'black';
-//         }
-
-//         this.anchor.addEventListener('focusout', function () {
-//             this.style.backgroundColor = "red";
-//         })
-        
-//     }
-// }
-
-const playing = {
+let playing  = {}
+playing = {
     app: function(anchor) {
         
         const currentPlayer = document.getElementsByClassName('current-player');
@@ -74,9 +41,11 @@ const playing = {
 
 
             const audio = new Audio(anchor.dataset.src);
+            const playPauseDiv = document.createElement('div');
             const playicon = document.createElement('i');
             const pauseicon = document.createElement('i');
-            pauseicon.className = "fas fa-pause-circle"
+            playPauseDiv.className = 'play-pause-div';
+            pauseicon.className = "fas fa-pause-circle";
             playicon.className = "fas fa-play-circle";
 
             playicon.onclick = audio.play();
@@ -94,11 +63,41 @@ const playing = {
                 pauseicon.style.display = 'none';
             }) 
 
-            playerDiv.appendChild(playicon);
-            playerDiv.appendChild(pauseicon);
+            playerDiv.appendChild(playPauseDiv);
+            playPauseDiv.appendChild(playicon);
+            playPauseDiv.appendChild(pauseicon);
+
+            const playlistVolumeDiv = document.createElement('div');
+            playlistVolumeDiv.className = 'playlist-volume-div';
+            playerDiv.appendChild(playlistVolumeDiv);
 
             this.playlist()
+            
+            const volumeDiv = document.createElement('div');
+            const volumeDownIcon = document.createElement('i');
+            const volumeRange = document.createElement('input');
+            const volumeUpIcon = document.createElement('i');
 
+            volumeDiv.className = 'volume-div';
+            volumeDownIcon.className = 'fas fa-volume-down';
+            volumeRange.className = 'volume-range';
+            volumeUpIcon.className = 'fas fa-volume-up';
+
+            volumeRange.type = 'range';
+            volumeRange.value = 50;
+            volumeRange.min = 0;
+            volumeRange.max = 100;
+
+            audio.volume = volumeRange.value/100;
+
+            volumeRange.addEventListener("change", function() {
+                audio.volume = volumeRange.value/100;
+            })
+
+            playlistVolumeDiv.appendChild(volumeDiv);
+            volumeDiv.appendChild(volumeDownIcon);
+            volumeDiv.appendChild(volumeRange);
+            volumeDiv.appendChild(volumeUpIcon);
             
             console.log(anchor.dataset.src);
         } else {
@@ -106,17 +105,21 @@ const playing = {
         }
     },
     playlist: function() {
-        const playerDiv = document.querySelector('.player-div');
+        const playlistVolumeDiv = document.querySelector('.playlist-volume-div');
         const playlistdiv = document.createElement('div');
         const playlistIcon = document.createElement('i');
-        playlistIcon.className = "fas fa-list";
         const listArr = [...document.querySelectorAll(`[data-isavailable= "true"]`)];
+        
+        playlistIcon.className = "fas fa-list";
+        playlistdiv.className = 'playlist-name';
 
         listArr.forEach(item => {            
             const listItem = item.cloneNode(true);
             playlistdiv.appendChild(listItem);
+            listItem.addEventListener("click", function() {
+                playing.app(listItem);
+            })
         })
-        console.log(playlistdiv);
         playlistdiv.style.display = 'none';
 
         playlistIcon.addEventListener('click', function() {
@@ -127,11 +130,9 @@ const playing = {
             }
         })
 
-        playlistdiv.className = 'playlist-name';
-        playerDiv.appendChild(playlistIcon);
+        playlistVolumeDiv.appendChild(playlistIcon);
         playlistIcon.appendChild(playlistdiv);
     }
-    
 }
     
 

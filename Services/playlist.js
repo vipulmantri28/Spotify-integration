@@ -1,4 +1,5 @@
 const showlist= {
+    currentPlaying: null,
     app: function() {
         const req  = new URL(location.href)
         const id = req.searchParams.get('id');
@@ -105,7 +106,7 @@ const showlist= {
                 trackDuration.className = 'track-duration';
 
                 trackAnchor.addEventListener('click',function() {
-                    playing.app(trackAnchor)   
+                   playing.app(trackAnchor)   
                 })
                 
             }

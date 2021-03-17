@@ -17,6 +17,11 @@ p.player-track-name, p.player-artist-name {
 .player-div {
     flex-basis: 60%;
     padding-left: 50px;
+    display: flex;
+}
+.play-pause-div, .playlist-volume-div {
+    flex-basis: 50%;
+    align-self: center;
 }
 i.fas.fa-play-circle, i.fas.fa-pause-circle, i.fas.fa-list {
     color: darkgray;
@@ -63,4 +68,8 @@ i.fas.fa-play-circle {
 }
 .playlist-name p.track-duration {
     display: none;
+}
+i.fas.fa-volume-down, i.fas.fa-volume-up {
+    color: darkgray;
+    font-size: 18px;
 }
