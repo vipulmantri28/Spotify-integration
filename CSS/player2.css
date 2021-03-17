@@ -6,6 +6,8 @@
     background-color: black;
     box-shadow: 0 0 15px darkgrey;
     border-radius: 15px;
+    height: 70px;
+    align-items: center;
 }
 .player-track-div {
     flex-basis: 40%;
@@ -22,13 +24,17 @@ p.player-track-name, p.player-artist-name {
 .play-pause-div, .playlist-volume-div {
     flex-basis: 50%;
     align-self: center;
+    display: flex;
 }
-i.fas.fa-play-circle, i.fas.fa-pause-circle, i.fas.fa-list {
+i.fas.fa-play-circle, i.fas.fa-pause-circle, i.fas.fa-list, i.fas.fa-forward, i.fas.fa-backward {
     color: darkgray;
     font-size: 20px;
 }
 i.fas.fa-play-circle {
     display: none;
+}
+i.fas.fa-play-circle, i.fas.fa-pause-circle {
+    padding: 0 20px;
 }
 .i.fas.fa-list {
     position: relative;
@@ -72,4 +78,7 @@ i.fas.fa-play-circle {
 i.fas.fa-volume-down, i.fas.fa-volume-up {
     color: darkgray;
     font-size: 18px;
+}
+.volume-div {
+    padding-left: 20px;
 }

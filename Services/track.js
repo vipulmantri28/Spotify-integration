@@ -3,7 +3,9 @@ const track = {
     trackWrapper: document.createElement('div'),
     trackDiv: document.createElement('div'),
     tracksDiv: document.createElement('div'),
+    trackArtistDiv: document.createElement('div'),
     trackName: document.createElement('p'),
+    trackArtist: document.createElement('p'),
     albumArtistDiv: document.createElement('div'),
     trackImgDiv: document.createElement('div'),
     albumImg: document.createElement('img'),
@@ -30,7 +32,9 @@ const track = {
         this.tracksDiv.appendChild(this.playIconDiv);
         this.tracksDiv.appendChild(this.trackDuration);
         this.playIconDiv.appendChild(this.playIcon);
-        this.playIconDiv.appendChild(this.trackName);
+        this.playIconDiv.appendChild(this.trackArtistDiv);
+        this.trackArtistDiv.appendChild(this.trackName);
+        this.trackArtistDiv.appendChild(this.trackArtist);
 
         this.trackDiv.className = 'track-div';
         this.trackDuration.className = 'track-duration';
@@ -40,7 +44,8 @@ const track = {
         this.albumImg.className = 'album-img';
         this.albumName.className = 'album-name';
         this.trackWrapper.className = 'track-wrapper';
-        
+        this.trackArtistDiv.className = 'track-name-div';
+        this.trackArtist.className = 'track-artist';
         this.playIconDiv.className = 'name-icon-div';
         this.artistName.className = 'album-artists';
         this.tracksDiv.className = 'tracks-div track-anchor-div';
@@ -69,6 +74,7 @@ const track = {
             this.albumImg.src = data.album.images[0].url;
             this.albumName.textContent = data.album.name;
             this.trackName.textContent = name;
+            this.trackArtist.textContent = artist.join(", ")
             this.trackDuration.textContent = duration;
 
             if (data.preview_url) {
@@ -81,7 +87,9 @@ const track = {
                 this.tracksDiv.dataset.isavailable = 'flase';
             }
 
-           this.layoutInit()
+            this.layoutInit();
+
+            this.tracksDiv.onclick = playing.app(this.tracksDiv)
             console.log(data)
         }
     ))}

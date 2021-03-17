@@ -1,5 +1,5 @@
-let playing  = {}
-playing = {
+const playing = {
+    audio: null,
     app: function(anchor) {
         
         const currentPlayer = document.getElementsByClassName('current-player');
@@ -10,11 +10,12 @@ playing = {
         
         const previousplayer = document.getElementsByClassName('player-parent');
         if (previousplayer[0]) {
-            document.body.removeChild(previousplayer[0])
+            playing.audio.pause()
+            document.body.removeChild(previousplayer[0]);
         }
         anchor.classList.add('current-player');
         if (anchor.dataset.isavailable === "true") {
-            audiosrc = anchor.dataset.src;
+            const audiosrc = anchor.dataset.src;
             const playerPage = document.body;
             const playerParent = document.createElement('div');
             const playerDiv = document.createElement('div');
@@ -40,32 +41,42 @@ playing = {
             playerTrackDiv.appendChild(playerArtistName);
 
 
-            const audio = new Audio(anchor.dataset.src);
+            playing.audio = new Audio(audiosrc);
             const playPauseDiv = document.createElement('div');
+            const playDiv = document.createElement('div');
             const playicon = document.createElement('i');
             const pauseicon = document.createElement('i');
+            const next = document.createElement('i');
+            const prev = document.createElement('i');
+            next.className = 'fas fa-forward';
+            prev.className = 'fas fa-backward';
+            playDiv.className = 'play-div'
             playPauseDiv.className = 'play-pause-div';
             pauseicon.className = "fas fa-pause-circle";
             playicon.className = "fas fa-play-circle";
 
-            playicon.onclick = audio.play();
+            playicon.onclick = playing.audio.play();
             
 
             playicon.addEventListener('click', function () {
-                audio.play();
+                playing.audio.play();
                 playicon.style.display = 'none';
                 pauseicon.style.display = 'block';
             })
 
             pauseicon.addEventListener('click', function() {
-                audio.pause();
+                playing.audio.pause();
                 playicon.style.display = 'block';
                 pauseicon.style.display = 'none';
             }) 
 
+            
             playerDiv.appendChild(playPauseDiv);
-            playPauseDiv.appendChild(playicon);
-            playPauseDiv.appendChild(pauseicon);
+            playPauseDiv.appendChild(prev);
+            playPauseDiv.appendChild(playDiv);
+            playDiv.appendChild(playicon);
+            playDiv.appendChild(pauseicon);
+            playPauseDiv.appendChild(next);
 
             const playlistVolumeDiv = document.createElement('div');
             playlistVolumeDiv.className = 'playlist-volume-div';
@@ -88,17 +99,38 @@ playing = {
             volumeRange.min = 0;
             volumeRange.max = 100;
 
-            audio.volume = volumeRange.value/100;
+            playing.audio.volume = volumeRange.value/100;
 
             volumeRange.addEventListener("change", function() {
-                audio.volume = volumeRange.value/100;
+                playing.audio.volume = volumeRange.value/100;
             })
 
             playlistVolumeDiv.appendChild(volumeDiv);
             volumeDiv.appendChild(volumeDownIcon);
             volumeDiv.appendChild(volumeRange);
             volumeDiv.appendChild(volumeUpIcon);
+
+            next.addEventListener("click", function() {
+                const playlistdiv = playlistVolumeDiv.querySelector('.playlist-name');
+                let currentplaying = playlistdiv.querySelector('.current-player');
+                if (currentplaying == playlistdiv.lastChild) {
+                    playing.app(playlistdiv.firstChild);
+                    anchor.firstChild.classList.add('current-player');
+                }else {
+                    playing.app(currentplaying.nextSibling);
+                    anchor.nextSibling.classList.add('current-player');
+                }
+            })
             
+            prev.addEventListener("click", function() {
+                const playlistdiv = playlistVolumeDiv.querySelector('.playlist-name');
+                const currentplaying = playlistdiv.querySelector('.current-player');
+                if (currentplaying == playlistdiv.firstChild) {
+                    playing.app(playlistdiv.lastChild);
+                }else {
+                    playing.app(currentplaying.previousSibling);
+                }
+            })
             console.log(anchor.dataset.src);
         } else {
             window.open(anchor.dataset.src)
@@ -109,17 +141,10 @@ playing = {
         const playlistdiv = document.createElement('div');
         const playlistIcon = document.createElement('i');
         const listArr = [...document.querySelectorAll(`[data-isavailable= "true"]`)];
-        
+
         playlistIcon.className = "fas fa-list";
         playlistdiv.className = 'playlist-name';
-
-        listArr.forEach(item => {            
-            const listItem = item.cloneNode(true);
-            playlistdiv.appendChild(listItem);
-            listItem.addEventListener("click", function() {
-                playing.app(listItem);
-            })
-        })
+        
         playlistdiv.style.display = 'none';
 
         playlistIcon.addEventListener('click', function() {
@@ -128,6 +153,14 @@ playing = {
             } else {
                 playlistdiv.style.display = 'none';
             }
+        })
+        listArr.forEach(item => {            
+            const listItem = item.cloneNode(true);
+            playlistdiv.appendChild(listItem);
+            listItem.addEventListener("click", function() {
+                listItem.classList.add("current-player");
+                playing.app(listItem);
+            })
         })
 
         playlistVolumeDiv.appendChild(playlistIcon);

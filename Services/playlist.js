@@ -106,7 +106,7 @@ const showlist= {
                 trackDuration.className = 'track-duration';
 
                 trackAnchor.addEventListener('click',function() {
-                   playing.app(trackAnchor)   
+                   playing.app(trackAnchor)  
                 })
                 
             }

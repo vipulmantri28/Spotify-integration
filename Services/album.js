@@ -111,6 +111,10 @@ const album = {
                 trackName.className = 'track-name';
                 trackArtist.className = 'track-artist';
                 trackDuration.className = 'track-duration';
+
+                trackAnchor.addEventListener('click',function() {
+                    playing.app(trackAnchor)  
+                 })
             }
 
             albumDiv.appendChild(tracksDiv);

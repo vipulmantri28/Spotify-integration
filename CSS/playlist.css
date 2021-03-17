@@ -34,6 +34,7 @@ img.playlist-img, img.album-img {
     margin-bottom: 10px;
     border-radius: 20px;
     align-items: center;
+    cursor: pointer;
 }
 p.track-name {
     font-size: 20px;
