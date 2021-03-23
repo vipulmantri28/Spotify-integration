@@ -213,8 +213,9 @@
         padding: 0 15px;
         box-shadow: 0 0 20px darkgrey;
         height: 40px;
-        border-radius: 20px;
+        border-radius: 4px;
         padding-left: 125px;
+        z-index: 3;
     }
     .search-filter {
         display: block;
@@ -233,7 +234,6 @@
     #search-select {
         font-size: 12px;
         padding: 0;
-        border-radius: 25px;
         color: black;
         background-color: darkgray;
         border: none;
@@ -244,8 +244,8 @@
         border-radius: 15px;
     }
     .search-result {
-        width: 31vw;
-        border-radius: 22px;
+        width: 31.7vw;
+        border-radius: 4px;
         left: 130px;
         top: 31px;
         max-width: 1500px;

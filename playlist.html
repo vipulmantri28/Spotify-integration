@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-<link rel="stylesheet" href="./CSS/header.css">
-<link rel="stylesheet" href="./CSS/reset.css">
-<link rel="stylesheet" href="./CSS/playlist.css">
-<link rel="stylesheet" href="./CSS/player2.css">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist</title>
-</head>
-<body onload="showlist.app()">
-    <div class="playlist-page">
-        <div class="header-container">
-            <div class="logo">
-                <div class="menu-icon">
-                    <i class="fas fa-ellipsis-v"></i>
-                </div>
-                <div class="name-container">
-                    <div class="name-parent">
-                        <a href="index.html" class="name-anchor">
-                            <h1 class="name">Verse</h1>
-                            <h3 class="sub-name">from Spotify</h3>
-                        </a>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Playlist</title>
+    </head>
+    <body onload="showlist.app()">
+        <div class="playlist-page">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="menu-icon">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                    <div class="name-container">
+                        <div class="name-parent">
+                            <a href="index.html" class="name-anchor">
+                                <h1 class="name">Verse</h1>
+                                <h3 class="sub-name">from Spotify</h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="search-login">
-
-                <div class="search-container">
-                    <i class="fas fa-search" onclick="searchexp()"></i>
-                    <div class="search-wrapper">
-                        <input type="search" class="search-box" placeholder="Search your Music" onkeyup="search(event.target.value)" onclick="search(event)">
-                        <i class="fas fa-times-circle" onclick="search(event), searchexp()"></i>
-                        <div class="search-filter">
-                            <select name="select-music" id="search-select" aria-placeholder="Music Type" onchange="selection()"></select>
+                <div class="search-login">
+                    
+                    <div class="search-container">
+                        <i class="fas fa-search" onclick="searchexp()"></i>
+                        <div class="search-wrapper">
+                            <input type="search" class="search-box" placeholder="Search your Music" onkeyup="search(event.target.value)" onclick="search(event)">
+                            <i class="fas fa-times-circle" onclick="search(event), searchexp()"></i>
+                            <div class="search-filter">
+                                <select name="select-music" id="search-select" aria-placeholder="Music Type" onchange="selection()"></select>
+                                
+                            </div>
+                        </div>
+                        <div class="search-result">
                             
                         </div>
                     </div>
-                    <div class="search-result">
-                        
-                    </div>
-                </div>
-                <div class="login-container">
-                    <div class="login-wrapper">
-                        <div class="login-parent">
-                            <a href="/login" class="login">login</a>
-                        </div>
-                        <div class="logged-in">
-                            
+                    <div class="login-container">
+                        <div class="login-wrapper">
+                            <div class="login-parent">
+                                <a href="/login" class="login">login</a>
+                            </div>
+                            <div class="logged-in">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="playlist-container">
             
+            <div class="playlist-container">
+                
+            </div>
+            
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+            <link rel="stylesheet" href="./CSS/header.css">
+            <link rel="stylesheet" href="./CSS/reset.css">
+            <link rel="stylesheet" href="./CSS/playlist.css">
+            <link rel="stylesheet" href="./CSS/player2.css">
+            <script src="./Services/search.js"></script>
+            <script src="./Services/userprofile.js"></script>    
+            <script src="./Services/player.js"></script>
+            <script src="./Services/playlist.js"></script>
         </div>
-
-        <script src="./Services/search.js"></script>
-        <script src="./Services/userprofile.js"></script>    
-        <script src="./Services/player.js"></script>
-        <script src="./Services/playlist.js"></script>
-    </div>
-</body>
-</html>
+    </body>
+    </html>

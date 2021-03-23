@@ -48,13 +48,18 @@ i.fas.fa-chevron-circle-right {
     overflow: scroll;
 }
 .item-div {
-    padding: 5px;
+    padding: 15px;
     width: 20vw;
     max-width: 150px;
+    background: #202421;
+    margin: 0 5px;
+    border-radius: 4px;
 }
 img.item-img {
     width: 20vw;
     max-width: 150px;
+    box-sizing: border-box;
+    border-radius: 2px;
 }
 .item-name-div {
     text-align: center;
@@ -82,6 +87,7 @@ p.artist {
     }
     .item-wrapper {
         overflow: inherit;
+        transition: transform 0.3s ease-in;
     }
     i.fas.fa-chevron-circle-right {
         display: block;

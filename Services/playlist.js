@@ -1,9 +1,16 @@
+window['currentSong'] = function(song) {
+    debugger
+   song.classList.add('current-player')
+}
+
 const showlist= {
     currentPlaying: null,
+    tracks: null,
     app: function() {
         const req  = new URL(location.href)
         const id = req.searchParams.get('id');
         this.getdata(id);
+
     },
     getdata: function(id) {
         let token = document.cookie.split('=');
@@ -13,7 +20,8 @@ const showlist= {
             headers: {'Authorization': 'Bearer ' + access_token}
         })
         .then (response => response.json().then(data => {
-            
+            console.log("data", data)
+            const passedData = data;
             const name = data.name;
             const description = data.description;
             const img = data.images[0].url;
@@ -27,7 +35,7 @@ const showlist= {
             const playlistImgDiv = document.createElement('div');
             const playlistImg = document.createElement('img');
             const tracksDiv = document.createElement('div');
-
+            
             playlistWrapper.className = 'playlist-wrapper';
             playlistNameDiv.className = 'playlist-name-div';
             playlistName.className = 'playlist-name';
@@ -36,11 +44,11 @@ const showlist= {
             playlistDiv.className = 'playlist-div';
             playlistDescription.className = 'playlist-description';
             tracksDiv.className = 'tracks-div';
-
+            
             playlistName.textContent = name;
             playlistDescription.textContent = description;
             playlistImg.src = img;
-
+            
             playlistContainer.appendChild(playlistWrapper);
             playlistWrapper.appendChild(playlistNameDiv);
             playlistWrapper.appendChild(playlistDiv);
@@ -49,7 +57,7 @@ const showlist= {
             playlistDiv.appendChild(playlistImgDiv);
             playlistImgDiv.appendChild(playlistImg);
             
-
+            
             for (item of data.tracks.items) {
                 
                 const trackAnchor = document.createElement('div');
@@ -79,14 +87,13 @@ const showlist= {
                 trackArtist.textContent = artist;
                 trackDuration.textContent = time;
 
-                
+                trackAnchor.dataset.id = track.id;
+
                 if (track.preview_url) {
                     playIcon.className = 'far fa-play-circle';
-                    trackAnchor.dataset.src = track.preview_url;
                     trackAnchor.dataset.isavailable = true;
                 } else {
                     playIcon.className = 'fas fa-external-link-square-alt';
-                    trackAnchor.dataset.src = track.external_urls.spotify;
                     trackAnchor.dataset.isavailable = false;
                 }
 
@@ -105,13 +112,18 @@ const showlist= {
                 trackArtist.className = 'track-artist';
                 trackDuration.className = 'track-duration';
 
-                trackAnchor.addEventListener('click',function() {
-                   playing.app(trackAnchor)  
-                })
-                
             }
-
+            
             playlistDiv.appendChild(tracksDiv);
+            const trackAnchors = document.querySelectorAll('.track-anchor-div');
+            trackAnchors.forEach(track => {
+                track.addEventListener("click", function() {
+                    console.log("onsode data", passedData)
+                    playing.app(passedData, track.dataset.id)
+                    track.classList.add("current-player");
+                })
+            })
         }))
-    }
+    },
+
 }

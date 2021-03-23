@@ -1,7 +1,7 @@
 
 
 
-const listRendarar = {
+const listRenderer = {
     render: function(url){
         let apiurl = 'https://api.spotify.com/v1/browse' + url
         this.fetch(apiurl)
@@ -122,38 +122,50 @@ const listRendarar = {
                 showBtn.textContent = 'Show Less';
             }
         })
-
-        scrollBack.addEventListener('click', function scrollback() {
-            
-            if (itemWrapper.style.transform == "translate(-80%)" ) {
-                itemWrapper.style.transform = "translate(-60%)"
-                scrollNext.style.display = "block"
-            }else if (itemWrapper.style.transform == "translate(-60%)") {
-                itemWrapper.style.transform = "translate(-40%)";
-            }else if (itemWrapper.style.transform == "translate(-40%)") {
-                itemWrapper.style.transform = "translate(-20%)";
-            }else if (itemWrapper.style.transform == "translate(-20%)") {
-                itemWrapper.style.transform = "translate(0px)";
-                scrollBack.style.display = "none";
-            }
         
+        let a;
+        if (a == undefined) {
+            a = 0;
+        }else {
+            a = Number(a); 
+        }
+        scrollBack.addEventListener('click', function scrollback() {
+            a -= 20;
+            
+            if (itemWrapper.getBoundingClientRect().left < 0) {
+                itemWrapper.style.transform = "translate(-" + a + "%)";
+                scrollNext.style.display = "block";
+                setTimeout(function() {
+                    if (itemWrapper.getBoundingClientRect().left >= 0) {
+                        scrollBack.style.display = "none";
+                    }
+                }, 300)
+                
+                
+            }
+            return a;
         })
 
         scrollNext.addEventListener('click', function scrollforward() {
-            
-            if (itemWrapper.style.transform == "translate(0px)" || itemWrapper.style.transform == "" || itemWrapper.style.transform == undefined) {
-                itemWrapper.style.transform = "translate(-20%)"
-                scrollBack.style.display = "block"
-            }else if (itemWrapper.style.transform == "translate(-20%)") {
-                itemWrapper.style.transform = "translate(-40%)";
-            }else if (itemWrapper.style.transform == "translate(-40%)") {
-                itemWrapper.style.transform = "translate(-60%)";
-            }else if (itemWrapper.style.transform == "translate(-60%)") {
-                itemWrapper.style.transform = "translate(-80%)";
-                scrollNext.style.display = "none";
-            }
-        })
+            a += 20;
 
+            if (itemWrapper.getBoundingClientRect().right > window.innerWidth) {
+                itemWrapper.style.transform = "translate(-" + a + "%)";
+                scrollBack.style.display = "block";
+                setTimeout(function() {
+                    if (itemWrapper.getBoundingClientRect().right <= window.innerWidth ) {
+                        scrollNext.style.display = "none";
+                    }
+                }, 300)
+            }
+            
+            return a;
+        })
+        if (itemWrapper.getBoundingClientRect().right <= window.innerWidth ) {
+            scrollNext.style.display = "none";
+        }else if (itemWrapper.getBoundingClientRect().left >= 0) {
+            scrollBack.style.display = "none";
+        }
     }
     
 }

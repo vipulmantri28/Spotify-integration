@@ -58,7 +58,7 @@ const track = {
             headers: {'Authorization': 'Bearer ' + access_token}
         })
         .then (response => response.json().then(data => {
-           
+            const passData = data;
             const name = data.name;
 
             const min = Math.floor(data.duration_ms / 60000);
@@ -79,18 +79,26 @@ const track = {
 
             if (data.preview_url) {
                 this.playIcon.className = 'far fa-play-circle';
-                this.tracksDiv.dataset.src = data.preview_url;
+                this.tracksDiv.dataset.id = data.id;
                 this.tracksDiv.dataset.isavailable = 'true';
             } else {
                 this.playIcon.className = 'fas fa-external-link-square-alt';
-                this.tracksDiv.dataset.src = data.external_url;
+                this.tracksDiv.dataset.id = data.id;
                 this.tracksDiv.dataset.isavailable = 'flase';
             }
 
             this.layoutInit();
 
-            this.tracksDiv.onclick = playing.app(this.tracksDiv)
-            console.log(data)
+            
+
+            this.tracksDiv.addEventListener("click", () => {
+                this.tracksDiv.classList.add('current-player');
+                if (this.tracksDiv.dataset.isavailable === "true") {
+                    playing.app(passData, this.tracksDiv.dataset.id);
+                }else {
+                    window.open(data.external_urls.spotify);
+                }
+            })
         }
     ))}
 }
