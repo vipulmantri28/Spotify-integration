@@ -38,6 +38,7 @@ img.playlist-img, img.album-img {
 }
 .track-anchor-div:hover {
     background-color: #242320;
+    transition: 0.2s ease-in-out;
 }
 p.track-name {
     font-size: 20px;
@@ -57,7 +58,7 @@ i.far.fa-play-circle, i.fas.fa-external-link-square-alt {
     display: flex;
     align-items: center;
 }
-.current-player {
+.current-player, .current-player:hover {
     background-color: darkgray;
 }
 .current-player  p {

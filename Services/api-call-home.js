@@ -112,7 +112,6 @@ const listRenderer = {
                 itemWrapper.style.flexWrap = 'nowrap';
                 itemWrapper.style.justifyContent = 'flex-start';
                 scrollNext.style.display = 'block';
-                scrollBack.style.display = 'block';
                 showBtn.textContent = 'Show All';
             } else if (itemWrapper.style.flexWrap == 'nowrap' || itemWrapper.style.flexwrap == undefined) {
                 itemWrapper.style.flexWrap = 'wrap';
@@ -163,6 +162,7 @@ const listRenderer = {
         })
         if (itemWrapper.getBoundingClientRect().right <= window.innerWidth ) {
             scrollNext.style.display = "none";
+            showBtn.style.display = "none";
         }else if (itemWrapper.getBoundingClientRect().left >= 0) {
             scrollBack.style.display = "none";
         }

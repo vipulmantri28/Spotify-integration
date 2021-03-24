@@ -118,9 +118,8 @@ const showlist= {
             const trackAnchors = document.querySelectorAll('.track-anchor-div');
             trackAnchors.forEach(track => {
                 track.addEventListener("click", function() {
-                    console.log("onsode data", passedData)
-                    playing.app(passedData, track.dataset.id)
                     track.classList.add("current-player");
+                    playing.app(passedData, track.dataset.id, track.dataset.isavailable)
                 })
             })
         }))

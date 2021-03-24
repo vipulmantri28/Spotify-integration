@@ -1,4 +1,6 @@
 const playing = {
+    bgSync: [],
+    bgParent: [],
     audio: document.createElement('audio'),
     playerParent: document.createElement('div'),
     cntrlParentDiv: document.createElement('div'),
@@ -110,104 +112,123 @@ const playing = {
         this.volCntrl.max = 100;
         this.volCntrl.value = 50;
         this.volCntrl.style.transform = 'rotate(-90deg)';
+        this.bgSync = document.querySelectorAll('.track-anchor-div');
+        this.bgParent = document.querySelector('.tracks-div');
     },
-    app: function(data, id) {
-        
-        
-        this.playlist(data, id);
-        console.log("player data", data)
-        let img;
-        if (data.tracks) {
-            this.filteredData = data.tracks.items.filter(item => item.track.preview_url);
-            img = data.images[0].url;
-            this.cntrlBgDiv.style.backgroundImage = "url(" +img+ ")";
-            data.tracks.items.forEach(item => {
-                if (item.track.id === id) {
-                    this.audio.src = item.track.preview_url;
-                    this.currTrackName.textContent = item.track.name;
-                    const artist = [];
-                    item.track.artists.forEach(art => {
-                        artist.push(art.name);
-                    })
-                    this.currArtistName.textContent = artist.join(", "); 
-                }
-            });
-        }else {
-            img = data.album.images[0].url;
-            const artist = [];
-            data.artists.forEach(art => {
-                artist.push(art.name);
-            })
-            this.currArtistName.textContent = artist.join(", ");
-            this.audio.src = data.preview_url;
-            this.currTrackName.textContent = data.name;
-        }
-        
-        this.playerIns();
-        this.audio.play();
-        this.audio.play().catch(error => {
-            this.nextTrack(this.filteredData);
-        })
-        this.loader();
-        this.playPause();
-        this.volChange();
-        
-        
-        this.nextIcon.addEventListener("click", () => {
-            this.nextTrack(this.filteredData)
-        });
-        this.prevIcon.addEventListener("click", () => {
-            this.prevTrack(this.filteredData)
-        });
-        this.playlistIcon.addEventListener("click", () => {
-            if (this.playlistDiv.style.display === 'block') {
-                this.playlistDiv.style.display = 'none';
+    app: function(data, id, isavailable) {
+
+        if (isavailable === "true") {
+            this.playlist(data, id);
+            console.log("player data", data)
+            let img;
+            if (data.tracks) {
+                this.filteredData = data.tracks.items.filter(item => item.track.preview_url);
+                img = data.images[0].url;
+                this.cntrlBgDiv.style.backgroundImage = "url(" +img+ ")";
+                data.tracks.items.forEach(item => {
+                    if (item.track.id === id) {
+                        this.audio.src = item.track.preview_url;
+                        this.currTrackName.textContent = item.track.name;
+                        const artist = [];
+                        item.track.artists.forEach(art => {
+                            artist.push(art.name);
+                        })
+                        this.currArtistName.textContent = artist.join(", "); 
+                    }
+                });
             }else {
-                this.playlistDiv.style.display = 'block';
+                img = data.album.images[0].url;
+                const artist = [];
+                data.artists.forEach(art => {
+                    artist.push(art.name);
+                })
+                this.currArtistName.textContent = artist.join(", ");
+                this.audio.src = data.preview_url;
+                this.currTrackName.textContent = data.name;
             }
-        })
-        this.volUpIcon.addEventListener("click", () => {
-            if (this.volDiv.style.display === "block") {
-                this.volDiv.style.display = "none";
-            }else {
-                this.volDiv.style.display = "block";
-            }
-        })
-        this.repeatDiv.addEventListener("click", () => {
-            if (this.repeat.style.display == "block") {
-                this.repeat.style.display = "none";
-                this.repeatOne.style.display ="block";
-                this.noRepeat.style.display = "none";
-            }else if(this.repeatOne.style.display === "block") {
-                this.repeat.style.display = "none";
-                this.repeatOne.style.display ="none";
-                this.noRepeat.style.display = "block";
-            }else if (this.noRepeat.style.display === "block") {
-                this.repeat.style.display = "block";
-                this.repeatOne.style.display ="none";
-                this.noRepeat.style.display = "none";
-            }
-        })
-        this.shuffle.addEventListener("click", () => {
-            if (this.shuffle.style.color === "black") {
-                this.shuffle.style.backgroundColor = "black";
-                this.shuffle.style.color = "darkgray";
-            }else {
-                this.shuffle.style.backgroundColor = "darkgray";
-                this.shuffle.style.color = "black";
-            }
-        })
-        this.audio.addEventListener('ended', () => {
-        
-            if (this.repeatOne.style.display === "block") {
-                this.audio.loop = true;
-                this.audio.play()
-            }else {
-                this.audio.loop = false;
+            
+            this.playerIns();
+            this.audio.play();
+            this.audio.play().catch(error => {
                 this.nextTrack(this.filteredData);
+            })
+            this.loader();
+            this.playPause();
+            this.volChange();
+            
+            
+            this.nextIcon.addEventListener("click", () => {
+                this.nextTrack(this.filteredData)
+            });
+            this.prevIcon.addEventListener("click", () => {
+                this.prevTrack(this.filteredData)
+            });
+            this.playlistIcon.addEventListener("click", () => {
+                if (this.playlistDiv.style.display === 'block') {
+                    this.playlistDiv.style.display = 'none';
+                }else {
+                    this.playlistDiv.style.display = 'block';
+                }
+            })
+            this.volUpIcon.addEventListener("click", () => {
+                if (this.volDiv.style.display === "block") {
+                    this.volDiv.style.display = "none";
+                }else {
+                    this.volDiv.style.display = "block";
+                }
+            })
+            this.repeatDiv.addEventListener("click", () => {
+                if (this.repeat.style.display == "block") {
+                    this.repeat.style.display = "none";
+                    this.repeatOne.style.display ="block";
+                    this.noRepeat.style.display = "none";
+                }else if(this.repeatOne.style.display === "block") {
+                    this.repeat.style.display = "none";
+                    this.repeatOne.style.display ="none";
+                    this.noRepeat.style.display = "block";
+                }else if (this.noRepeat.style.display === "block") {
+                    this.repeat.style.display = "block";
+                    this.repeatOne.style.display ="none";
+                    this.noRepeat.style.display = "none";
+                }
+            })
+            this.shuffle.addEventListener("click", () => {
+                if (this.shuffle.style.color === "black") {
+                    this.shuffle.style.backgroundColor = "black";
+                    this.shuffle.style.color = "darkgray";
+                }else {
+                    this.shuffle.style.backgroundColor = "darkgray";
+                    this.shuffle.style.color = "black";
+                }
+            })
+            this.audio.addEventListener('ended', () => {
+            
+                if (this.repeatOne.style.display === "block") {
+                    this.audio.loop = true;
+                    this.audio.play()
+                }else {
+                    this.audio.loop = false;
+                    this.nextTrack(this.filteredData);
+                }
+            })
+            this.spotifyPlay.addEventListener("click", () => {
+                this.playOnSpotify(data);
+            })
+            document.body.append(this.playerParent);
+        }else {
+            if (data.tracks) {
+                const foundtrack = data.tracks.items.find(item => item.track.id === id);
+                
+                window.open(foundtrack.track.external_urls.spotify);
+            }else {
+                window.open(data.external_urls.spotify);
             }
-        })
-        document.body.append(this.playerParent);
+        }
+
+        const bgcurr = this.bgParent.querySelectorAll('.current-player');
+        if (bgcurr.length > 1) {
+            bgcurr[0].classList.remove('current-player');
+        }
     },
     playlist: function(data, id) {
         if (data.tracks) {
@@ -267,6 +288,14 @@ const playing = {
 
         currTrack.classList.remove('current-player');
         track.classList.add('current-player');
+        for (let i = 0; i < this.bgSync.length; i++) {
+            if (this.bgSync[i].dataset.id === track.dataset.id) {
+                this.bgSync[i].classList.add('current-player');
+            }
+        }
+
+        const bgcurr = this.bgParent.querySelectorAll('.current-player');
+        bgcurr[0].classList.remove('current-player');
     
         const foundtrack = data.find(item => item.track.id === track.dataset.id);
         this.audio.src = foundtrack.track.preview_url;
@@ -288,6 +317,7 @@ const playing = {
     },
     nextTrack: function(data) {
         const currTrack = this.playlistDiv.querySelector('.current-player');
+        this.audio.pause()
         let nextTrack;
         if (currTrack == this.playlistDiv.lastChild) {
             if (this.noRepeat.style.display === "block") {
@@ -304,6 +334,7 @@ const playing = {
     },
     prevTrack: function(data) {
         const currTrack = this.playlistDiv.querySelector('.current-player');
+        this.audio.pause();
         let prevTrack;
         if (currTrack == this.playlistDiv.firstChild) {
             prevTrack = this.playlistDiv.lastChild;
@@ -345,6 +376,16 @@ const playing = {
             this.currduration.textContent = currMin + ":" + currSec;
             this.seeker.value = this.audio.currentTime * (100/this.audio.duration);
         })
+    },
+    playOnSpotify: function(data) {
+        const currTrack = this.playlistDiv.querySelector('.current-player');
+
+        if (data.tracks) {
+            const foundtrack = data.tracks.items.find(item => item.track.id === currTrack.dataset.id);
+            window.open(foundtrack.track.external_urls.spotify);
+        }else {
+            window.open(data.external_urls.spotify);;
+        }
     }
 }
     
