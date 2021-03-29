@@ -12,8 +12,11 @@
     flex-basis: 40%;
     font-size: 18px;
 }
-p.player-track-name, p.player-artist-name {
-    text-align: center;
+p.player-track-name {
+    padding-bottom: 5px;
+}
+p.player-artist-name {
+    font-weight: 300;
 }
 .player-div {
     flex-basis: 60%;
@@ -43,42 +46,6 @@ color: #9fa19f;
 }
 .i.fas.fa-list {
     position: relative;
-}
-.playlist-name {
-    position: absolute;
-    top: -320px;
-    height: 300px;
-    overflow: overlay;
-    background-color: black;
-    box-shadow: 0 0 15px darkgrey;
-    border-radius: 16px;
-    display: block;
-    padding: 10px 20px;
-}
-.playlist-name .track-anchor-div {
-    height: 20px;
-    justify-content: space-around;
-}
-.playlist-name .far.fa-play-circle {
-    display: none;
-}
-.playlist-name .track-name-div {
-    width: 180px;
-}
-.playlist-name p.track-name {
-    font-size: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.playlist-name p.track-artist {
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.playlist-name p.track-duration {
-    display: none;
 }
 .volume-div {
     padding-left: 20px;
@@ -127,12 +94,17 @@ color: #9fa19f;
 .player-track-div {
     padding: 10px;
     font-size: 14px;
-    border-radius: 30px;
-    text-align: center;
-    margin-right: 25px;
-    box-shadow: 0 0px 7px darkgrey;
-    margin-top: 10px;
-    margin-left: 10px;
+    border-radius: 3px;
+    margin: 10px;
+    box-shadow: 0 0px 2px darkgrey;
+    cursor: pointer;
+}
+.player-track-div:hover {
+    background-color: #242320;
+    transition: 0.2s ease-in-out;
+}
+.player-track-div.current-player:hover {
+    background-color: darkgray;
 }
 .functionality-div {
     flex-basis: 75%;

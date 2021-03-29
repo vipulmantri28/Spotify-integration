@@ -48,6 +48,7 @@ p.track-artist {
 }
 p.track-duration {
     font-size: 18px;
+    pointer-events: none;
 }
 i.far.fa-play-circle, i.fas.fa-external-link-square-alt {
     color: darkgray;
@@ -57,6 +58,7 @@ i.far.fa-play-circle, i.fas.fa-external-link-square-alt {
 .name-icon-div {
     display: flex;
     align-items: center;
+    pointer-events: none;
 }
 .current-player, .current-player:hover {
     background-color: darkgray;

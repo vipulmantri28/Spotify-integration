@@ -1,6 +1,4 @@
 const playing = {
-    bgSync: [],
-    bgParent: [],
     audio: document.createElement('audio'),
     playerParent: document.createElement('div'),
     cntrlParentDiv: document.createElement('div'),
@@ -33,7 +31,8 @@ const playing = {
     currduration: document.createElement('div'),
     seeker: document.createElement('input'),
     totalDuration: document.createElement('div'),
-    filteredData: [],
+    interval: null,
+    firstIns: false,
     playerIns: function() {
         this.playerParent.className = 'player-parent';
         this.trackArtistDiv.className = 'track-artist-div';
@@ -112,56 +111,42 @@ const playing = {
         this.volCntrl.max = 100;
         this.volCntrl.value = 50;
         this.volCntrl.style.transform = 'rotate(-90deg)';
-        this.bgSync = document.querySelectorAll('.track-anchor-div');
-        this.bgParent = document.querySelector('.tracks-div');
+        
     },
-    app: function(data, id, isavailable) {
-
-        if (isavailable === "true") {
-            this.playlist(data, id);
-            console.log("player data", data)
-            let img;
-            if (data.tracks) {
-                this.filteredData = data.tracks.items.filter(item => item.track.preview_url);
-                img = data.images[0].url;
-                this.cntrlBgDiv.style.backgroundImage = "url(" +img+ ")";
-                data.tracks.items.forEach(item => {
-                    if (item.track.id === id) {
-                        this.audio.src = item.track.preview_url;
-                        this.currTrackName.textContent = item.track.name;
-                        const artist = [];
-                        item.track.artists.forEach(art => {
-                            artist.push(art.name);
-                        })
-                        this.currArtistName.textContent = artist.join(", "); 
-                    }
-                });
+    app: function(isavailable, id, data) {
+        let filteredData;
+        if (this.firstIns === false) {
+            if (isavailable === "true") {
+                let img;
+                if (data.tracks) {
+                    filteredData = data.tracks.items.filter(item => item.track.preview_url);
+                    img = data.images[0].url;
+                    this.cntrlBgDiv.style.backgroundImage = "url(" +img+ ")";
+                }else {
+                    filteredData = data;
+                    img = data.album.images[0].url;
+                    this.cntrlBgDiv.style.backgroundImage = "url(" + img + ")";
+                }
+                
+                this.playerIns();
+                this.player(filteredData, id);
+                this.playlist(filteredData, id);
+                
             }else {
-                img = data.album.images[0].url;
-                const artist = [];
-                data.artists.forEach(art => {
-                    artist.push(art.name);
-                })
-                this.currArtistName.textContent = artist.join(", ");
-                this.audio.src = data.preview_url;
-                this.currTrackName.textContent = data.name;
+                if (data.tracks) {
+                    const foundtrack = data.tracks.items.find(item => item.track.id === id);
+                    
+                    window.open(foundtrack.track.external_urls.spotify);
+                }else {
+                    window.open(data.external_urls.spotify);
+                }
             }
-            
-            this.playerIns();
-            this.audio.play();
-            this.audio.play().catch(error => {
-                this.nextTrack(this.filteredData);
-            })
-            this.loader();
-            this.playPause();
-            this.volChange();
-            
-            
+            this.firstIns = true;
             this.nextIcon.addEventListener("click", () => {
-                this.nextTrack(this.filteredData)
+                this.nextTrack(filteredData, id)
             });
             this.prevIcon.addEventListener("click", () => {
-                this.prevTrack(this.filteredData)
+                this.prevTrack(filteredData, id)
             });
             this.playlistIcon.addEventListener("click", () => {
                 if (this.playlistDiv.style.display === 'block') {
@@ -182,14 +167,17 @@ const playing = {
                     this.repeat.style.display = "none";
                     this.repeatOne.style.display ="block";
                     this.noRepeat.style.display = "none";
+                    this.audio.loop = true;
                 }else if(this.repeatOne.style.display === "block") {
                     this.repeat.style.display = "none";
                     this.repeatOne.style.display ="none";
                     this.noRepeat.style.display = "block";
+                    this.audio.loop = false;
                 }else if (this.noRepeat.style.display === "block") {
                     this.repeat.style.display = "block";
                     this.repeatOne.style.display ="none";
                     this.noRepeat.style.display = "none";
+                    this.audio.loop = false;
                 }
             })
             this.shuffle.addEventListener("click", () => {
@@ -202,57 +190,73 @@ const playing = {
                 }
             })
             this.audio.addEventListener('ended', () => {
-            
-                if (this.repeatOne.style.display === "block") {
-                    this.audio.loop = true;
-                    this.audio.play()
-                }else {
-                    this.audio.loop = false;
-                    this.nextTrack(this.filteredData);
+                if (this.repeatOne.style.display !== "block") {
+                    this.nextTrack(filteredData, id);   
                 }
             })
             this.spotifyPlay.addEventListener("click", () => {
                 this.playOnSpotify(data);
             })
-            document.body.append(this.playerParent);
         }else {
-            if (data.tracks) {
-                const foundtrack = data.tracks.items.find(item => item.track.id === id);
-                
-                window.open(foundtrack.track.external_urls.spotify);
+            if (isavailable === "true") {
+                if (data.tracks) {
+                    filteredData = data.tracks.items.filter(item => item.track.preview_url);
+                    const playerPlaylist = [...this.playlistDiv.querySelectorAll(".player-track-div")];
+                    const nextTrack = playerPlaylist.filter(item => item.dataset.id === id);
+                    const currTrack = this.playlistDiv.querySelector('.current-player');
+                    let trckPos;
+                    if(nextTrack[0].dataset.pos <= currTrack.dataset.pos) {
+                        trckPos = 1;
+                    }else if (nextTrack[0].dataset.pos > currTrack.dataset.pos) {
+                        trckPos = 0;
+                    }
+                    this.playTrack(filteredData, currTrack, nextTrack[0], trckPos);
+                }else {
+                    filteredData = data;
+                    const currTrack = this.playlistDiv.querySelector('.current-player');
+                    const trckPos = 0;
+                    this.playTrack(filteredData, currTrack, currTrack, trckPos)
+                }
             }else {
-                window.open(data.external_urls.spotify);
-            }
+                if (data.tracks) {
+                    const foundtrack = data.tracks.items.find(item => item.track.id === id);
+                    
+                    window.open(foundtrack.track.external_urls.spotify);
+                }else {
+                    window.open(data.external_urls.spotify);
+                }
+            }    
         }
-
-        const bgcurr = this.bgParent.querySelectorAll('.current-player');
+        document.body.append(this.playerParent);
+        const bgParent = document.querySelector('.tracks-div');
+        const bgcurr = bgParent.querySelectorAll('.current-player');
         if (bgcurr.length > 1) {
             bgcurr[0].classList.remove('current-player');
         }
     },
     playlist: function(data, id) {
-        if (data.tracks) {
-            data.tracks.items.forEach(item => {
+        if (data.length > 1) {
+            let pos = 1;
+            data.forEach(item => {
                 const track = item.track;
-                if (track.preview_url) {
-                    const tracksDiv = document.createElement('div');
-                    const trackName = document.createElement('p');
-                    const artistName = document.createElement('p');
-                    tracksDiv.className = 'player-track-div';
-                    trackName.className = 'player-track-name';
-                    artistName.className = 'player-artist-name';
-                    trackName.textContent = track.name;
-                    const artist = [];
-                    track.artists.forEach(art => {
-                        artist.push(art.name);
-                    })
-                    artistName.textContent = artist.join(", ");
-                
-                    tracksDiv.dataset.id = track.id;
-                    tracksDiv.appendChild(trackName);
-                    tracksDiv.appendChild(artistName);
-                    this.playlistDiv.appendChild(tracksDiv);
-                }
+                const tracksDiv = document.createElement('div');
+                const trackName = document.createElement('p');
+                const artistName = document.createElement('p');
+                tracksDiv.className = 'player-track-div';
+                trackName.className = 'player-track-name';
+                artistName.className = 'player-artist-name';
+                trackName.textContent = track.name;
+                const artist = [];
+                track.artists.forEach(art => {
+                    artist.push(art.name);
+                })
+                artistName.textContent = artist.join(", ");
+                tracksDiv.dataset.pos = pos;
+                tracksDiv.dataset.id = track.id;
+                tracksDiv.appendChild(trackName);
+                tracksDiv.appendChild(artistName);
+                this.playlistDiv.appendChild(tracksDiv);
+                pos = pos + 1;
             })
         }else {
             const tracksDiv = document.createElement('div');
@@ -267,81 +271,112 @@ const playing = {
                 artist.push(art.name);
             })
             artistName.textContent = artist.join(", ");
+            tracksDiv.dataset.pos = pos
             tracksDiv.dataset.id = data.id;
             tracksDiv.appendChild(trackName);
             tracksDiv.appendChild(artistName);
-            if (tracksDiv.dataset.id === id) {
-                tracksDiv.classlist.add('current-player');
-            }
             this.playlistDiv.appendChild(tracksDiv);
         }
         const tracksDiv = this.playlistDiv.querySelectorAll('.player-track-div');
         tracksDiv.forEach(track => {
             if (track.dataset.id == id) {
-                console.log(track.dataset.id)
                 track.classList.add('current-player');
             }
+            track.addEventListener("click", () => {
+                const currTrack = this.playlistDiv.querySelector('.current-player');
+                let trckPos;
+                if (track.dataset.pos <= currTrack.dataset.pos) {
+                    trckPos = 1;
+                }else if (track.dataset.pos > currTrack.dataset.pos) {
+                    trckPos = 0;
+                }
+                this.playTrack(data, currTrack, track, trckPos)
+            })
+            
         })
-        console.log(this.playlistDiv);
+
     },
-    playTrack: function(data, currTrack, track) {
-
-        currTrack.classList.remove('current-player');
-        track.classList.add('current-player');
-        for (let i = 0; i < this.bgSync.length; i++) {
-            if (this.bgSync[i].dataset.id === track.dataset.id) {
-                this.bgSync[i].classList.add('current-player');
+    player: function(data, id) {
+        if (data.length > 1) {
+            data.forEach(item => {
+            if (item.track.id === id) {
+                this.audio.src = item.track.preview_url;
+                this.currTrackName.textContent = item.track.name;
+                const artist = [];
+                item.track.artists.forEach(art => {
+                    artist.push(art.name);
+                })
+                this.currArtistName.textContent = artist.join(", "); 
             }
+        })}else {
+            this.currTrackName.textContent = data.name;
+            const artist = [];
+            data.artists.forEach(art => {
+                artist.push(art.name);
+            })
+            this.currArtistName.textContent = artist.join(", ");
         }
-
-        const bgcurr = this.bgParent.querySelectorAll('.current-player');
-        bgcurr[0].classList.remove('current-player');
-    
-        const foundtrack = data.find(item => item.track.id === track.dataset.id);
-        this.audio.src = foundtrack.track.preview_url;
-    
-        this.currTrackName.textContent = foundtrack.track.name;
-        const artist = foundtrack.track.artists.map(art => art.name);
-        this.currArtistName.textContent = artist.join(", ");
-        clearInterval(this.loader());
-        this.audio.load();
-    
+        this.loader();
         this.audio.play();
         this.audio.play().catch(error => {
-            this.nextTrack(this.filteredData);
+            debugger
+            console.log(error);
+            this.nextTrack(data, id);
         })
-        // this.audio.play().then(this.loader())
+        this.playPause();
+        this.volChange();
+        
+        
+    },
+    playTrack: function(data, currTrack, track, trckPos) {
+        debugger
+        currTrack.classList.remove('current-player');
+        track.classList.add('current-player');
+        const bgSync = document.querySelectorAll('.track-anchor-div');
+        for (let i = 0; i < bgSync.length; i++) {
+            if (bgSync[i].dataset.id === track.dataset.id) {
+                bgSync[i].classList.add('current-player');
+            }
+        }
+        const bgParent = document.querySelector('.tracks-div');
+        const bgcurr = bgParent.querySelectorAll('.current-player');
+        bgcurr[trckPos].classList.remove('current-player');
+        this.player(data, track.dataset.id)
         this.playIcon.style.display = 'none';
         this.pauseIcon.style.display = 'block';
         
+        clearInterval(this.interval)
     },
-    nextTrack: function(data) {
+    nextTrack: function(data, id) {
+        debugger
+        this.audio.src = null;
         const currTrack = this.playlistDiv.querySelector('.current-player');
-        this.audio.pause()
+        let trckPos;
         let nextTrack;
         if (currTrack == this.playlistDiv.lastChild) {
-            if (this.noRepeat.style.display === "block") {
-                this.pauseIcon.style.display = 'none';
-                this.playIcon.style.display = 'block';
-            }else {
+            if (this.noRepeat.style.display !== "block") {
                 nextTrack = this.playlistDiv.firstChild;
-                this.playTrack(data, currTrack, nextTrack);
+                trckPos = 1;
             }
         }else {
             nextTrack = currTrack.nextSibling;
-            this.playTrack(data, currTrack, nextTrack);
+            trckPos = 0;
         }
+        this.playTrack(data, currTrack, nextTrack, trckPos);
     },
     prevTrack: function(data) {
         const currTrack = this.playlistDiv.querySelector('.current-player');
-        this.audio.pause();
+        let trckPos;
         let prevTrack;
         if (currTrack == this.playlistDiv.firstChild) {
             prevTrack = this.playlistDiv.lastChild;
+            trckPos = 0;
         }else {
             prevTrack = currTrack.previousSibling;
+            trckPos = 1;
         }
-        this.playTrack(data, currTrack, prevTrack);
+
+        this.playTrack(data, currTrack, prevTrack, trckPos);
     },
     playPause: function() {
         this.pauseIcon.addEventListener("click", () => {
@@ -362,7 +397,7 @@ const playing = {
     },
     loader: function() {
         
-        setInterval(() => {
+        this.interval = setInterval(() => {
             let trackMin = Math.floor(this.audio.duration / 60);
             let trackSec = Math.floor(this.audio.duration - trackMin * 60);
             let currMin = Math.floor(this.audio.currentTime / 60);
@@ -375,7 +410,7 @@ const playing = {
             this.totalDuration.textContent = trackMin + ":" + trackSec;
             this.currduration.textContent = currMin + ":" + currSec;
             this.seeker.value = this.audio.currentTime * (100/this.audio.duration);
-        })
+        }, 1000)
     },
     playOnSpotify: function(data) {
         const currTrack = this.playlistDiv.querySelector('.current-player');
